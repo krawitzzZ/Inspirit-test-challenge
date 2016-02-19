@@ -1,0 +1,239 @@
+/*=========================================MAIN SETTINGS=========================================*/
+
+body {
+    font-family: sans-serif;
+    color: #5e5e5e;
+}
+
+#wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-top: 1em;
+    background-color: #f5f5f5;
+}
+
+.parent {
+    letter-spacing: -.3em;
+    text-align: center;
+}
+
+.child {
+    width: 60%;
+    min-width: 18em;
+    display: inline-block;
+    vertical-align: top;
+    letter-spacing: normal;
+}
+
+h1,
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 1.5em auto 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 2em auto 3em;
+}
+
+label {
+    font-size: 1.1em;
+}
+
+input {
+    margin: .5em .5em .7em .5em;
+    font-size: 100%;
+    border: 1px solid #a0a0a0;
+    padding: .3em .4em;
+    border-radius: 4px;
+    transition: all .25s;
+}
+
+input:focus {
+    border-color: #337AB7;
+    outline: none;
+}
+
+button {
+    margin-left: -.3em;
+    font-size: 1.15em;
+    padding: .36em .6em;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    background-color: #d5d5d5;
+    transition: border .15s;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    border: 1px solid #337AB7;
+}
+
+button:active {
+    background-color: #c5c5c5;
+}
+
+/*=========================================FIRST CHALLENGE=========================================*/
+
+#firstChallenge form {
+    margin-bottom: 2em;
+}
+
+#firstChallenge .errorBlock {
+
+}
+
+.errorBlock .error,
+.errorBlock .success {
+    width: 65%;
+    min-width: 18em;
+    margin: 0 auto 3px;
+    padding: .8em;
+    border-radius: 7px;
+}
+
+.errorBlock .error {
+    color: #9F3534;
+    background-color: #F2DEDE;
+}
+
+.errorBlock .error:nth-child(odd) {
+    background-color: #f29d9b;
+}
+
+.errorBlock .success {
+    color: #2B542C;
+    background-color: #b7f0b5;
+}
+
+/*=========================================SECOND CHALLENGE=========================================*/
+
+#secondChallenge h2 {
+    margin: 2em auto;
+}
+
+#btnWrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 16em;
+    height: 16em;
+    text-align: center;
+    border-radius: 7px;
+}
+
+#btnWrapper.green {
+    background-color: #5CB85C;
+}
+
+#btnWrapper.red {
+    background-color: #D9534F;
+}
+
+#btnWrapper button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    margin: -1.15em -3.5em;
+    width: 7em;
+    height: 2.3em;
+}
+
+#secondChallenge ul {
+    margin: 2em auto 4em;
+    width: 18em;
+}
+
+#secondChallenge ul li {
+    margin-bottom: 3px;
+}
+
+#secondChallenge ul li span {
+    float: right;
+}
+
+#secondChallenge ul li:not(:last-child) span {
+    margin-right: .9em;
+}
+
+/*=========================================THIRD CHALLENGE=========================================*/
+
+#thirdChallenge .forFetch {
+    position: relative;
+    width: 18em;
+    margin: 0 auto 2em;
+    text-align: center;
+}
+
+#getFetch {
+    margin: 0 auto 1em;
+}
+
+#clearFetch {
+    display: block;
+    margin: 0 auto;
+    font-size: .9em;
+}
+
+#thirdChallenge .fetchList {
+    width: 18em;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#thirdChallenge .fetchList ul {
+    list-style: circle inside;
+}
+
+#thirdChallenge .fetchList > ul > li:first-child {
+    margin-bottom: .5em;
+}
+
+#thirdChallenge .fetchList ul ul {
+    margin-left: 2.5em;
+    list-style: disc inside;
+}
+
+#thirdChallenge .fetchList > ul > li > ul > li {
+    margin-top: .2em;
+}
+
+/*=========================================FOOTER=========================================*/
+
+footer {
+    margin-top: 3em;
+    width: 100%;
+    padding: 3em 0;
+    background-color: #c0c0c0;
+}
+
+footer ul {
+    width: 18em;
+    margin: 0 auto;
+}
+
+footer ul li {
+    display: inline-block;
+    padding: 0 1em;
+}
+
+footer ul li:last-child {
+    margin-left: -.3em;
+    border-left: 1px solid #5e5e5e;
+}
+
+@media screen and (max-width: 800px) {
+
+    #firstChallenge .break:before {
+        content: '\a';
+        white-space: pre;
+    }
+
+}

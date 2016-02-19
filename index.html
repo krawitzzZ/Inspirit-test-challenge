@@ -1,0 +1,91 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="CONTENT-TYPE" content="text/html">
+    <title>Inspirit-test</title>
+    <meta name="description" content="">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <h1>Javascript Challenge</h1>
+
+    <div id="firstChallenge" class="parent">
+        <h2>First challenge</h2>
+        <form name="ajaxForm" method="post" class="child">
+            <label>Type text here:<i class="break"></i>
+                <input type="text" name="data" placeholder="This field must be filled" id="simpleInput">
+            </label><i class="break"></i>
+            <button id="postResponse">Submit</button>
+        </form>
+        <!--<div class="errorBlock child">-->
+            <!--<div class="error">Oops! Soomething wrong here... Try to type merrorm</div>-->
+            <!--<div class="error">Oops! Soomething wrong here... Try to type merrorm</div>-->
+            <!--<div class="error">Oops! Soomething wrong here... Try to type merrorm</div>-->
+            <!--<div class="error">No Content</div>-->
+            <!--<div class="success">Successfully recieved data from user.</div>-->
+        <!--</div>-->
+    </div>
+
+    <div id="secondChallenge">
+        <h2>Second challenge</h2>
+        <div id="btnWrapper">
+            <button id="responseCodes">Click on me!</button>
+        </div>
+        <ul>
+            <li>Successes: <span id="successes">0</span></li>
+            <li>Failures: <span id="fails">0</span></li>
+            <li>Successes since last failure: <span id="failsSinceSuccess">0</span></li>
+            <li>Failures percentage: <span id="failsPercentage">0%</span></li>
+        </ul>
+    </div>
+
+    <div id="thirdChallenge">
+        <h2>Third challenge</h2>
+        <div class="forFetch">
+            <button id="getFetch">Get fetch data</button>
+            <button id="clearFetch">Clear</button>
+        </div>
+        <!--<div class="fetchList">-->
+            <!--<ul>-->
+                <!--<li>Fruit-->
+                    <!--<ul>-->
+                        <!--<li><span id="apples">5</span> Apple</li>-->
+                        <!--<li><span id="pears">5</span> Pear</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li>Vegetables-->
+                    <!--<ul>-->
+                        <!--<li><span id="cucumbers">5</span> Cucumber</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+
+    <footer>
+        <ul>
+            <li>Demin Nikita</li>
+            <li>demin_na@bk.ru</li>
+        </ul>
+    </footer>
+
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script src="js/main.js"></script>
+</body>
+</html>
