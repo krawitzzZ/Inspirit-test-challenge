@@ -10,6 +10,7 @@ body {
     margin: 0 auto;
     padding-top: 1em;
     background-color: #f5f5f5;
+    overflow: hidden;
 }
 
 .parent {
@@ -102,6 +103,7 @@ button:active {
 .errorBlock .error {
     color: #9F3534;
     background-color: #F2DEDE;
+    transition: all .35s;
 }
 
 .errorBlock .error:nth-child(odd) {
@@ -111,6 +113,7 @@ button:active {
 .errorBlock .success {
     color: #2B542C;
     background-color: #b7f0b5;
+    transition: all .6s;
 }
 
 /*=========================================SECOND CHALLENGE=========================================*/
