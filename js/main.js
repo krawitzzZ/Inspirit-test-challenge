@@ -165,6 +165,88 @@ $(document).ready(function () {
         }
     };
 
+///third task class constructor
+    function FetchCounter(parentDivForFetchData) {
+        this.parentDivForFetchDataAsObj = parentDivForFetchData;
+        this._fetchListAsObj = $('.fetchList');
+        this._applesSpan = {};
+        this._pearsSpan = {};
+        this._cucumbersSpan = {};
+        this._fetchList = '<ul class="fetchList">' +
+                              '<li>Fruit' +
+                                  '<ul class="fruitList">' +
+                                      '<li><span id="apples"></span></li>' +
+                                      '<li><span id="pears"></span></li>' +
+                                  '</ul>' +
+                              '<li>Vegetables' +
+                                  '<ul class="vegetableList">' +
+                                        '<li><span id="cucumbers"></span></li>' +
+                                  '</ul>' +
+                              '</li>' +
+                          '</ul>';
+        this.apples = 0;
+        this.pears = 0;
+        this.cucumbers = 0;
+    }
+
+///and his methods in prototype
+    FetchCounter.prototype = {
+        constructor : FetchCounter,
+
+    ///show <ul> first time if he is not visible in DOM
+        showFetchListFirstTime : function () {
+            if (!this._fetchListAsObj.is(':visible')) {
+                this.parentDivForFetchDataAsObj.append(this._fetchList);
+                this._fetchListAsObj = $('.fetchList');
+
+                this._applesSpan = $('#apples');
+                this._pearsSpan = $('#pears');
+                this._cucumbersSpan = $('#cucumbers');
+            }
+        },
+
+    ///count fetch items after server response
+        countFetchItems : function (fetchData) {
+            switch (fetchData) {
+                case 'apple' : this.apples++;
+                    break;
+                case 'pear' : this.pears++;
+                    break;
+                case 'cucumber' : this.cucumbers++;
+                    break;
+            }
+        },
+
+    ///show calculated fetch data in <ul>
+        addFetchItemsToList : function () {
+            if (this.apples == 1) {
+                this._applesSpan.text(this.apples + ' Apple');
+            } else {
+                this._applesSpan.text(this.apples + ' Apples');
+            }
+
+            if (this.pears == 1) {
+                this._pearsSpan.text(this.pears + ' Pear');
+            } else {
+                this._pearsSpan.text(this.pears + ' Pears');
+            }
+
+            if (this.cucumbers == 1) {
+                this._cucumbersSpan.text(this.cucumbers + ' Cucumber');
+            } else {
+                this._cucumbersSpan.text(this.cucumbers + ' Cucumbers');
+            }
+        },
+
+        ///hide fetchList and reset his counts
+        hideFetchList : function () {
+            this._fetchListAsObj.detach();
+            this.apples = 0;
+            this.pears = 0;
+            this.cucumbers = 0;
+        }
+    };
+
     /////////////////////////////////
     ///Variables
     /////////////////////////////////
@@ -186,6 +268,13 @@ $(document).ready(function () {
         failsPercentage = $('#failsPercentage'),
         response = {},
         counter = new ErrorCounter();
+
+///third challenge variables
+    var getFetchButton = $('#getFetch'),
+        clearFetchButton = $('#clearFetch'),
+        parentDivForFetch = $('#thirdChallenge'),
+        fetchCounter = new FetchCounter(parentDivForFetch),
+        fetchResponse = {};
 
     /////////////////////////////////
     ///Handlers
@@ -264,6 +353,35 @@ $(document).ready(function () {
         }
     }); ///end of coloringButton click
 
+///third challenge handler
+    getFetchButton.on('click', function (event) {
+        event.preventDefault();
+        $(this).attr('disabled', 'true');
+
+        var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+        var xhr = new XHR;
+        xhr.open('GET', 'http://careers.intspirit.com/endpoint/data_set', true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) return;
+            fetchResponse = JSON.parse(this.responseText);
+
+            fetchCounter.countFetchItems(fetchResponse.item);
+            fetchCounter.showFetchListFirstTime();
+            fetchCounter.addFetchItemsToList();
+
+            getFetchButton.removeAttr('disabled');
+
+            console.log(fetchResponse.item, fetchResponse.type);
+            console.log(fetchCounter.apples, fetchCounter.pears);
+
+        }
+    }); ///end of getFetchButton click
+
+    clearFetchButton.on('click', function (event) {
+        event.preventDefault();
+        fetchCounter.hideFetchList();
+    }); ///end of clearFetchButton click
 
 })(); ///end of script
 }); ///end of document.ready

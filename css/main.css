@@ -189,22 +189,19 @@ button:active {
     width: 18em;
     margin: 0 auto;
     text-align: left;
-}
-
-#thirdChallenge .fetchList ul {
     list-style: circle inside;
 }
 
-#thirdChallenge .fetchList > ul > li:first-child {
+#thirdChallenge .fetchList > li:first-child {
     margin-bottom: .5em;
 }
 
-#thirdChallenge .fetchList ul ul {
+#thirdChallenge .fetchList ul {
     margin-left: 2.5em;
     list-style: disc inside;
 }
 
-#thirdChallenge .fetchList > ul > li > ul > li {
+#thirdChallenge .fetchList > li > ul > li {
     margin-top: .2em;
 }
 
