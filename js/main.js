@@ -1,6 +1,10 @@
 $(document).ready(function () {
 (function () {
 
+    /////////////////////////////////
+    ///Classes
+    /////////////////////////////////
+
 ///first task class constructor
     function NotificationManager(parentDivForNoticesAsObject) {
         this.parentDivAsObj = parentDivForNoticesAsObject;
@@ -117,10 +121,53 @@ $(document).ready(function () {
         }
     };
 
+///second task class constructor
+    function ErrorCounter() {
+        this.successes = 0;
+        this.errors = 0;
+        this.errorsSinceLastSuccess = 0;
+        this.failsPercents = '0%';
+        this._clickCount = 0;
+    }
 
+///and his methods in prototype
+    ErrorCounter.prototype = {
+        constructor : ErrorCounter,
 
+    ///count successes
+        countSuccesses : function (bool) {
+            if (bool) {
+                this.successes++;
+                this._clickCount++;
+            }
+        },
 
+    ///count errors
+        countErrors : function (bool) {
+            if (!bool) {
+                this.errors++;
+                this._clickCount++;
+            }
+        },
 
+    ///count errors since last success
+        countErrorsSinceLastSuccess : function (bool) {
+            if (!bool) {
+                this.errorsSinceLastSuccess++;
+            } else {
+                this.errorsSinceLastSuccess = 0;
+            }
+        },
+
+    ///calculate failures percents
+        calculateFailsPercents : function () {
+            this.failsPercents = ((this.errors * 100) / this._clickCount).toFixed(2) + '%';
+        }
+    };
+
+    /////////////////////////////////
+    ///Variables
+    /////////////////////////////////
 
 ///first challenge variables
     var postButton = $('#postResponse'),
@@ -129,6 +176,20 @@ $(document).ready(function () {
         inputData = {},
         regExp = /^error$/i,
         notificationManager = new NotificationManager(parentDivForNotices);
+
+///second challenge variables
+    var buttonWrapper = $('#btnWrapper'),
+        coloringButton = $('#responseCodes'),
+        successList = $('#successes'),
+        errorList = $('#fails'),
+        errorsSinceSuccessList = $('#failsSinceSuccess'),
+        failsPercentage = $('#failsPercentage'),
+        response = {},
+        counter = new ErrorCounter();
+
+    /////////////////////////////////
+    ///Handlers
+    /////////////////////////////////
 
 ///first challenge handler
     postButton.on('click', function (event) {
@@ -141,7 +202,9 @@ $(document).ready(function () {
             $(this).text('Resubmit');
             notificationManager.showErrorNotification('Oops! Something wrong here.. try type "error"');                                                                                     //удалить потом
         } else {
+
             inputData.request = "any text";
+
             if (inputValue.search(regExp) == 0) {
                 $(this).text('Resubmit');
                 inputData.request = "error";
@@ -154,6 +217,7 @@ $(document).ready(function () {
             xhr.send(JSON.stringify(inputData));
             xhr.onreadystatechange = function () {
 
+            ///call errorNotification method depend on status of server response
                 if (this.readyState != 4) return;
                 switch (this.status) {
                     case 200 : notificationManager.showSuccessNotification(this.responseText);
@@ -165,6 +229,41 @@ $(document).ready(function () {
             }
         }
     }); ///end of postButton click
+
+///second challenge handler
+    coloringButton.on('click', function (event) {
+        event.preventDefault();
+        $(this).attr('disabled', 'true');
+
+        var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+        var xhr = new XHR;
+        xhr.open('GET', 'http://careers.intspirit.com/endpoint/response_codes', true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) return;
+            response = JSON.parse(this.responseText);
+
+        ///change div wrapper color depend on server response
+            buttonWrapper.removeClass('red green');
+            if (!response.result) buttonWrapper.addClass('red');
+            buttonWrapper.addClass('green');
+
+        ///calculating errors, successes etc.
+            counter.countSuccesses(response.result);
+            counter.countErrors(response.result);
+            counter.countErrorsSinceLastSuccess(response.result);
+            counter.calculateFailsPercents();
+
+        ///show errors, successes etc.
+            successList.text(counter.successes);
+            errorList.text(counter.errors);
+            errorsSinceSuccessList.text(counter.errorsSinceLastSuccess);
+            failsPercentage.text(counter.failsPercents);
+
+            coloringButton.removeAttr('disabled');
+        }
+    }); ///end of coloringButton click
+
 
 })(); ///end of script
 }); ///end of document.ready
