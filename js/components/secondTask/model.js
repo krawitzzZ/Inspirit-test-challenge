@@ -7,6 +7,7 @@ define([], function () {
         clickCount: 0,
         wrapperColor: '',
         paintWrapper: function (serverResponse) {
+
             if (serverResponse) {
                 this.wrapperColor = 'green';
             } else {

@@ -1,15 +1,15 @@
 define(['jquery'], function ($) {
 
     var ajaxRequest = {
-        send: function (url, method, data, callback) {
+        send: function (options, callback) {
             $.ajax({
-                url: 'http://careers.intspirit.com/endpoint/' + url,
-                type: method || 'GET',
+                url: 'http://careers.intspirit.com/endpoint/' + options.url,
+                type: options.method || 'GET',
                 processData: false,
                 contentType: 'application/json',
-                data: JSON.stringify(data),
+                data: JSON.stringify(options.data),
                 success: function (data, textStatus, xhr) {
-                    return callback(xhr, data);
+                    return callback({data: data, xhr: xhr});
                 },
                 error: function (xhr, textStatus) {
                     console.log(textStatus);

@@ -9,8 +9,8 @@ require.config({
 require([
     'components/router',
     'components/common/navigation',
-    'config'
-], function (router, navigation, config) {
+    'components/secondTask/view'
+], function (router, navigation, secondTask) {
 
     router.init();
     navigation();

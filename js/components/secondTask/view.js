@@ -7,12 +7,11 @@ define([
     '../../config'
 ], function ($, _, template, model, controller, config) {
 
-    var secondTaskView;
-    secondTaskView = {
+    var secondTaskView = {
         compileTemplate: _.template(template),
         init: function () {
             this.render();
-            controller();
+            controller.init();
         },
         render: function () {
             config.mainPageSelectors.$parentEl.html(this.compileTemplate({
