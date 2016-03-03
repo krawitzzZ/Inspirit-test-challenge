@@ -1,69 +1,42 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="CONTENT-TYPE" content="text/html">
-    <title>Inspirit-test</title>
-    <meta name="description" content="">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="CONTENT-TYPE" content="text/html">
+        <title>Intspirit-test</title>
+        <meta name="description" content="">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
 
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-</head>
-<body>
+    </head>
+    <body>
+        <div class="container wrapper">
+            <header>
+                <h1 class="text-center"><strong>Javascript Challenge</strong></h1>
+                <nav class="clearfix">
+                    <ul class="nav nav-pills nav-justified col-md-6">
+                        <li role="presentation"><a href="#firstTask">First challenge</a></li>
+                        <li role="presentation"><a href="#secondTask">Second challenge</a></li>
+                        <li role="presentation"><a href="#thirdTask">Third challenge</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div id="main" class="row">
 
-<div id="wrapper">
+                <h2 class="text-center"><strong>Choose challenge for preview</strong></h2>
 
-    <h1>Javascript Challenge</h1>
 
-    <div id="firstChallenge" class="parent">
-        <h2>First challenge</h2>
-        <form name="ajaxForm" method="post" class="child">
-            <label>Type text here:<i class="break"></i>
-                <input type="text" name="data" placeholder="This field must be filled" id="simpleInput">
-            </label><i class="break"></i>
-            <button id="postResponse">Submit</button>
-        </form>
-    </div>
 
-    <div id="secondChallenge">
-        <h2>Second challenge</h2>
-        <div id="btnWrapper">
-            <button id="responseCodes">Click on me!</button>
+            </div>
         </div>
-        <ul>
-            <li>Successes:<span id="successes">0</span></li>
-            <li>Failures:<span id="fails">0</span></li>
-            <li>Failures since last success:<span id="failsSinceSuccess">0</span></li>
-            <li>Failures percentage:<span id="failsPercentage">0%</span></li>
-        </ul>
-    </div>
-
-    <div id="thirdChallenge">
-        <h2>Third challenge</h2>
-        <div class="forFetch">
-            <button id="getFetch">Get fetch data</button>
-            <button id="clearFetch">Clear</button>
-        </div>
-    </div>
-
-    <footer>
-        <ul>
-            <li>Demin Nikita</li>
-            <li>demin_na@bk.ru</li>
-        </ul>
-    </footer>
-
-</div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <script src="js/main.js"></script>
-</body>
+        <footer class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center"><span>Demin Nikita</span><b>|</b><span>demin_na@bk.ru</span></div>
+            </div>
+        </footer>
+        <script data-main="js/main.js" src="js/vendors/require.js"></script>
+    </body>
 </html>

@@ -1,239 +1,118 @@
 /*=========================================MAIN SETTINGS=========================================*/
 
-body {
+body, html {
+    height: 100%;
     font-family: sans-serif;
     color: #5e5e5e;
 }
 
-#wrapper {
-    max-width: 1170px;
-    margin: 0 auto;
-    padding-top: 1em;
-    background-color: #f5f5f5;
-    overflow: hidden;
+.wrapper.container {
+    background-color: #e5e5e5;
+    height: 90%;
+    min-height: 70rem;
 }
 
-.parent {
-    letter-spacing: -.3em;
-    text-align: center;
+header h1 {
+    margin: 30px auto 30px;
 }
 
-.child {
-    width: 60%;
-    min-width: 18em;
-    display: inline-block;
-    vertical-align: top;
-    letter-spacing: normal;
+header nav .nav-justified {
+    padding-right: 0;
 }
 
-h1,
-h2 {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    margin: 1.5em auto 2em;
+header nav .nav-pills > li {
+    font-size: 1.8rem;
 }
 
-h2 {
-    font-size: 1.5em;
-    margin: 2em auto 3em;
-}
-
-label {
-    font-size: 1.1em;
-}
-
-input {
-    margin: .5em .5em .7em .5em;
-    font-size: 100%;
-    border: 1px solid #a0a0a0;
-    padding: .3em .4em;
-    border-radius: 4px;
-    transition: all .25s;
-}
-
-input:focus {
-    border-color: #337AB7;
-    outline: none;
-}
-
-button {
-    margin-left: -.3em;
-    font-size: 1.15em;
-    padding: .36em .6em;
-    border: 1px solid #a0a0a0;
-    border-radius: 4px;
+header nav .nav-pills > li > a {
+    color: #656565;
     background-color: #d5d5d5;
-    transition: border .15s;
-    cursor: pointer;
+    margin: 0 1rem;
 }
 
-button:focus {
-    outline: none;
+header .nav-pills>li.active>a,
+header .nav-pills>li.active>a:focus,
+header .nav-pills>li.active>a:hover {
+    background-color: #aaaaaa;
 }
 
-button:hover {
-    border: 1px solid #337AB7;
+footer.container {
+    height: 10%;
+    min-height: 8rem;
+    font-size: 16px;
+    line-height: 8rem;
+    background-color: #cccccc;
 }
 
-button:active {
-    background-color: #c5c5c5;
+footer.container b {
+    margin: 0 1rem;
 }
 
-/*=========================================FIRST CHALLENGE=========================================*/
-
-#firstChallenge form {
-    margin-bottom: 2em;
+#main {
+    padding-top: 3rem;
 }
 
-#firstChallenge .errorBlock {
+/*=========================================FIRST TASK=========================================*/
 
+#firstTask .firstTaskForm {
+    margin: 3rem auto;
 }
 
-.errorBlock .error,
-.errorBlock .success {
-    width: 65%;
-    min-width: 18em;
-    margin: 0 auto 3px;
-    padding: .8em;
-    border-radius: 7px;
+#firstTask .alert-danger {
+    color: #8c4240;
+    background-color: #f28d87;
 }
 
-.errorBlock .error {
-    color: #9F3534;
-    background-color: #F2DEDE;
-    transition: all .35s;
+#firstTask .alert-success {
+    color: #2c7631;
+    background-color: #9ff09d;
 }
 
-.errorBlock .error:nth-child(odd) {
-    background-color: #f29d9b;
-}
+/*=========================================SECOND TASK=========================================*/
 
-.errorBlock .success {
-    color: #2B542C;
-    background-color: #b7f0b5;
-    transition: all .6s;
-}
-
-/*=========================================SECOND CHALLENGE=========================================*/
-
-#secondChallenge h2 {
-    margin: 2em auto;
-}
-
-#btnWrapper {
+#secondTaskBtnWrapper {
     position: relative;
-    margin: 0 auto;
-    width: 16em;
-    height: 16em;
-    text-align: center;
-    border-radius: 7px;
+    margin: 3rem auto;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 15px;
 }
 
-#btnWrapper.green {
-    background-color: #5CB85C;
+#secondTaskBtnWrapper.green {
+    background-color: #9ff09d;
 }
 
-#btnWrapper.red {
-    background-color: #D9534F;
+#secondTaskBtnWrapper.red {
+    background-color: #f28d87;
 }
 
-#btnWrapper button {
+.secondTaskButton {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    display: inline-block;
-    margin: -1.15em -3.75em;
-    width: 7.5em;
-    height: 2.3em;
+    left: calc(50% - 51px);
+    top: calc(50% - 17px);
 }
 
-#secondChallenge ul {
-    margin: 2em auto 4em;
-    width: 18em;
-}
-
-#secondChallenge ul li {
-    margin-bottom: 3px;
-}
-
-#secondChallenge ul li span {
-    float: right;
-}
-
-#secondChallenge ul li:not(:last-child) span {
-    margin-right: .9em;
-}
-
-/*=========================================THIRD CHALLENGE=========================================*/
-
-#thirdChallenge .forFetch {
-    position: relative;
-    width: 18em;
-    margin: 0 auto 2em;
-    text-align: center;
-}
-
-#getFetch {
-    margin: 0 auto 1em;
-}
-
-#clearFetch {
-    display: block;
-    margin: 0 auto;
-    font-size: .9em;
-}
-
-#thirdChallenge .fetchList {
-    width: 18em;
-    margin: 0 auto;
-    text-align: left;
-    list-style: circle inside;
-}
-
-#thirdChallenge .fetchList > li:first-child {
-    margin-bottom: .5em;
-}
-
-#thirdChallenge .fetchList ul {
-    margin-left: 2.5em;
-    list-style: disc inside;
-}
-
-#thirdChallenge .fetchList > li > ul > li {
-    margin-top: .2em;
-}
-
-/*=========================================FOOTER=========================================*/
-
-footer {
-    margin-top: 3em;
-    width: 100%;
-    padding: 3em 0;
-    background-color: #c0c0c0;
-}
-
-footer ul {
-    width: 18em;
+#secondTask .list-group {
+    max-width: 30rem;
     margin: 0 auto;
 }
 
-footer ul li {
-    display: inline-block;
-    padding: 0 1em;
+#secondTask .list-group .list-group-item {
+    background-color: #e5e5e5;
+    border: 1px solid #d0d0d0;
 }
 
-footer ul li:last-child {
-    margin-left: -.3em;
-    border-left: 1px solid #5e5e5e;
+/*=========================================THIRD TASK=========================================*/
+
+#thirdTask .forFetch {
+    margin: 3rem auto;
 }
 
-@media screen and (max-width: 800px) {
+#thirdTask .fetchList {
+    max-width: 25rem;
+    margin: 0 auto;
+}
 
-    #firstChallenge .break:before {
-        content: '\a';
-        white-space: pre;
-    }
-
+#thirdTask .fetchList li {
+    margin-bottom: .2rem;
 }

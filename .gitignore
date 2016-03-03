@@ -45,9 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-.idea/workspace.xml
-.idea/vcs.xml
-.idea/modules.xml
-.idea/.name
-.idea/Inspirit-test-challenge.iml
-.idea/misc.xml
+.idea/
+old/
+js/bower_components/
+js/main_BACKUP_6388.js
+js/main_BASE_6388.js
+js/main_LOCAL_6388.js
+js/main_REMOTE_6388.js
