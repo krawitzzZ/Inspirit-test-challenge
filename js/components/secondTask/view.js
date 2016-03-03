@@ -1,16 +1,12 @@
 define([
-    'jquery',
     'underscore',
     'text!components/secondTask/template.html',
     'components/secondTask/model',
     '../../config'
-], function ($, _, template, model, config) {
+], function (_, template, model, config) {
 
     var secondTaskView = {
         compileTemplate: _.template(template),
-        init: function () {
-            this.compileTemplate();
-        },
         render: function () {
             config.mainPageSelectors.$parentEl.html(this.compileTemplate({
                 wrapperColor: model.wrapperColor,
