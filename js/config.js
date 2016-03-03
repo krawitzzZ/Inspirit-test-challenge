@@ -1,4 +1,5 @@
 define(['jquery'], function ($) {
+
     return {
         TaskFilter: {
             first: '#firstTask',
@@ -11,6 +12,4 @@ define(['jquery'], function ($) {
         },
         MAX_ERROR_COUNT: 5
     }
-
-
 });

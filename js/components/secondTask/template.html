@@ -1,23 +1,23 @@
 <div id="secondTask" class="col-md-6 col-md-offset-3 text-center">
     <h2 class="text-center"><strong>Second challenge</strong></h2>
-    <div id="secondTaskBtnWrapper" class="green">
+    <div id="secondTaskBtnWrapper" class="<%= wrapperColor %>">
         <button type="button" class="btn btn-default secondTaskButton">Click on me!</button>
     </div>
     <ul class="list-group">
         <li class="list-group-item text-left">
-            <span class="badge">14</span>
+            <span class="badge"><%= successes %></span>
             Successes:
         </li>
         <li class="list-group-item text-left">
-            <span class="badge">14</span>
+            <span class="badge"><%= failures %></span>
             Failures:
         </li>
         <li class="list-group-item text-left">
-            <span class="badge">14</span>
+            <span class="badge"><%= failureSinceLastSuccess %></span>
             Failures since last success:
         </li>
         <li class="list-group-item text-left">
-            <span class="badge">14%</span>
+            <span class="badge"><%= failuresPercentage %>%</span>
             Failures percentage:
         </li>
     </ul>
