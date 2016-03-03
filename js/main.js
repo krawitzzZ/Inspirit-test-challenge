@@ -12,5 +12,6 @@ require([
 ], function (router, navigation) {
 
     router.init();
+    navigation();
 
 });
