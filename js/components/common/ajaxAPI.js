@@ -9,10 +9,10 @@ define(['jquery'], function ($) {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function (data, textStatus, xhr) {
-                    return callback(data, textStatus, xhr);
+                    return callback(xhr, data);
                 },
-                error: function (xhr, textStatus, errorThrown) {
-                    return callback(xhr, textStatus, errorThrown);
+                error: function (xhr, textStatus) {
+                    console.log(textStatus);
                 }
             });
         }

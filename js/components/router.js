@@ -1,15 +1,15 @@
 define([
-    'commonConfig',
-    'components/firstTask/firstTaskView',
-    'components/secondTask/secondTaskView',
-    'components/thirdTask/thirdTaskView'
-], function (commonConfig, firstTaskView, secondTaskView, thirdTaskView) {
+    '../config',
+    'components/firstTask/view',
+    'components/secondTask/view',
+    'components/thirdTask/view'
+], function (config, firstTaskView, secondTaskView, thirdTaskView) {
 
 
     var router;
     router = {
         init: function () {
-            this.routes = commonConfig.TaskFilter;
+            this.routes = config.TaskFilter;
             this.checkHash();
             window.onhashchange = this.renderHash.bind(this);
         },

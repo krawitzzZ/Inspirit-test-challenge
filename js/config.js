@@ -5,7 +5,7 @@ define(['jquery'], function ($) {
             second: '#secondTask',
             third: '#thirdTask'
         },
-        queries: {
+        mainPageSelectors: {
             $parentEl: $('#main'),
             $navBar: $('.nav li')
         },

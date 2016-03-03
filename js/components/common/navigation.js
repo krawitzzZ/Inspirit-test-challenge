@@ -1,11 +1,11 @@
 define([
     'jquery',
-    'commonConfig'
+    '../../config'
 ], function ($, navBar) {
     var navigation;
     navigation = function () {
-            navBar.queries.$navBar.on('click', function () {
-                navBar.queries.$navBar.removeClass('active');
+            navBar.mainPageSelectors.$navBar.on('click', function () {
+                navBar.mainPageSelectors.$navBar.removeClass('active');
                 $(this).addClass('active');
             })
         };
