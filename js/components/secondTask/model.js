@@ -20,7 +20,7 @@ define([], function () {
             }
         },
         failCounter: function (serverResponse) {
-            if (serverResponse) {
+            if (!serverResponse) {
                 this.failures++;
             }
         },

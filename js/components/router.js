@@ -5,7 +5,6 @@ define([
     'components/thirdTask/view'
 ], function (config, firstTaskView, secondTaskView, thirdTaskView) {
 
-
     var router;
     router = {
         init: function () {
@@ -31,7 +30,6 @@ define([
             }
         }
     };
-
     return router;
 });
 

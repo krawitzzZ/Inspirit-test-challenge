@@ -3,15 +3,13 @@ define([
     'underscore',
     'text!components/secondTask/template.html',
     'components/secondTask/model',
-    'components/secondTask/controller',
     '../../config'
-], function ($, _, template, model, controller, config) {
+], function ($, _, template, model, config) {
 
     var secondTaskView = {
         compileTemplate: _.template(template),
         init: function () {
-            this.render();
-            controller.init();
+            this.compileTemplate();
         },
         render: function () {
             config.mainPageSelectors.$parentEl.html(this.compileTemplate({
