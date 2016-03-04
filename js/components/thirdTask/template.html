@@ -4,14 +4,26 @@
         <button type="button" class="btn btn-default getFetch">Get fetch data</button>
         <button type="button" class="btn btn-default clearFetch">Clear</button>
     </div>
-    <ul class="fetchList text-left">
-        <li>Fruits
-            <ul class="fruits">
-            </ul>
-        </li>
-        <li>Vegetables
-            <ul class="vegetables">
-            </ul>
-        </li>
-    </ul>
+    <% if (products) { %>
+        <ul class="fetchList text-left">
+            <% if (_.size(fruits) > 0) { %>
+                <li>Fruits
+                    <ul class="fruits">
+                        <% _.each(fruits, function(itemValue, itemName) { %>
+                            <li><%= itemValue %> <%= itemName %></li>
+                        <% }) %>
+                    </ul>
+                </li>
+            <% } %>
+            <% if (_.size(vegetables) > 0) { %>
+                <li>Vegetables
+                    <ul class="vegetables">
+                        <% _.each(vegetables, function(itemValue, itemName) { %>
+                        <li><%= itemValue %> <%= itemName %></li>
+                        <% }) %>
+                    </ul>
+                </li>
+            <% } %>
+        </ul>
+    <% } %>
 </div>

@@ -21,7 +21,11 @@ define([
                 event.target.setAttribute('disable', 'true');
                 ajax.send({url: 'data_set'}, function (response) {
                     var serverResponse = response.data;
-                    console.log(serverResponse);
+                    console.log(serverResponse.type, serverResponse.item);
+                    model.addProduct(serverResponse.type, serverResponse.item);
+
+
+                    view.render();
                     event.target.removeAttribute('disable');
                 });
             });

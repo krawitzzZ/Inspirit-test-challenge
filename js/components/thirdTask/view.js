@@ -9,7 +9,11 @@ define([
     var thirdTaskView = {
         compileTemplate: _.template(template),
         render: function () {
-            config.mainPageSelectors.$parentEl.html(this.compileTemplate());
+            config.mainPageSelectors.$parentEl.html(this.compileTemplate({
+                products: model.productsExist,
+                fruits: model.fruits,
+                vegetables: model.vegetables
+            }));
         }
     };
     return thirdTaskView;
