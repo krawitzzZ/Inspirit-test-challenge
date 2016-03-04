@@ -2,7 +2,7 @@ define([], function () {
 
     var thirdTaskModel = {
 
-        productsExist: true,
+        productsExist: false,
         fruits: {},
         vegetables: {},
         addProduct: function (type, item) {
@@ -13,6 +13,7 @@ define([], function () {
                     case  'vegetable': this.vegetables[item] = 1;
                         break;
                 }
+                this.productsExist = true;
             } else {
                 this.countProducts(type, item);
             }
@@ -24,6 +25,11 @@ define([], function () {
                 case  'vegetable': this.vegetables[item]++;
                     break;
             }
+        },
+        clearProducts: function () {
+            this.fruits = {};
+            this.vegetables = {};
+            this.productsExist = false;
         }
     };
     return thirdTaskModel;

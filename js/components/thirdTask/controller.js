@@ -13,22 +13,22 @@ define([
             this.showFetchData();
         },
         showFetchData: function () {
-            document.body.addEventListener('click', function (event) {
-                if (!event.target.classList.contains('getFetch')) {
-                    return;
+            document.body.onclick = function (event) {
+                if (event.target.classList.contains('getFetch')) {
+                    event.preventDefault();
+                    event.target.setAttribute('disable', 'true');
+                    ajax.send({url: 'data_set'}, function (response) {
+                        var serverResponse = response.data;
+                        model.addProduct(serverResponse.type, serverResponse.item);
+                        view.render();
+                        event.target.removeAttribute('disable');
+                    });
                 }
-                event.preventDefault();
-                event.target.setAttribute('disable', 'true');
-                ajax.send({url: 'data_set'}, function (response) {
-                    var serverResponse = response.data;
-                    console.log(serverResponse.type, serverResponse.item);
-                    model.addProduct(serverResponse.type, serverResponse.item);
-
-
+                if (event.target.classList.contains('clearFetch')) {
+                    model.clearProducts();
                     view.render();
-                    event.target.removeAttribute('disable');
-                });
-            });
+                }
+            };
         }
     };
     return thirdTaskController;

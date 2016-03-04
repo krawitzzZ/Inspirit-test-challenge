@@ -9,18 +9,36 @@
             <% if (_.size(fruits) > 0) { %>
                 <li>Fruits
                     <ul class="fruits">
-                        <% _.each(fruits, function(itemValue, itemName) { %>
-                            <li><%= itemValue %> <%= itemName %></li>
-                        <% }) %>
+                        <% _.each(fruits, function(itemValue, itemName) {
+                            var itemNameToUpper = itemName.charAt(0).toUpperCase() + itemName.substr(1),
+                            manyItemsName = itemNameToUpper;
+                            if (!(itemName.lastIndexOf('s') == itemName.length - 1)) {
+                            manyItemsName = itemNameToUpper + 's';
+                            }
+                            if (itemValue == 1) { %>
+                                <li><%= itemValue %> <%= itemNameToUpper %></li>
+                            <% } else { %>
+                                <li><%= itemValue %> <%= manyItemsName %></li>
+                            <% }
+                         }) %>
                     </ul>
                 </li>
-            <% } %>
-            <% if (_.size(vegetables) > 0) { %>
+            <% }
+            if (_.size(vegetables) > 0) { %>
                 <li>Vegetables
                     <ul class="vegetables">
-                        <% _.each(vegetables, function(itemValue, itemName) { %>
-                        <li><%= itemValue %> <%= itemName %></li>
-                        <% }) %>
+                        <% _.each(vegetables, function(itemValue, itemName) {
+                            var itemNameToUpper = itemName.charAt(0).toUpperCase() + itemName.substr(1),
+                            manyItemsName = itemNameToUpper;
+                            if (!(itemName.lastIndexOf('s') == itemName.length - 1)) {
+                            manyItemsName = itemNameToUpper + 's';
+                            }
+                            if (itemValue == 1) { %>
+                                <li><%= itemValue %> <%= itemNameToUpper %></li>
+                            <% } else { %>
+                                <li><%= itemValue %> <%= manyItemsName %></li>
+                            <% }
+                        }) %>
                     </ul>
                 </li>
             <% } %>
