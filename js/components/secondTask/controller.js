@@ -7,9 +7,12 @@ define([
     var secondTaskController = {
         init: function () {
             view.render();
-            this.bindEvent();
+            this.bindEvents();
         },
-        bindEvent: function () {
+        bindEvents: function () {
+            this.getSuccessOrFail();
+        },
+        getSuccessOrFail: function () {
             document.body.addEventListener('click', function (event) {
                 if (!event.target.classList.contains('secondTaskButton')) {
                     return;

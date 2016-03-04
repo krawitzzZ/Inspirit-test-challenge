@@ -14,7 +14,7 @@ define([
                 failures: model.failures,
                 failureSinceLastSuccess: model.failureSinceLastSuccess,
                 failuresPercentage: model.failuresPercentage
-            }))
+            }));
         }
     };
     return secondTaskView;

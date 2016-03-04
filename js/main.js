@@ -8,8 +8,7 @@ require.config({
 
 require([
     'components/router',
-    'components/common/navigation',
-    'components/secondTask/controller'
+    'components/common/navigation'
 ], function (router, navigation) {
 
     router.init();
