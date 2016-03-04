@@ -1,9 +1,9 @@
 define([
     '../config',
-    'components/firstTask/view',
+    'components/firstTask/controller',
     'components/secondTask/controller',
     'components/thirdTask/controller'
-], function (config, firstTaskView, secondTaskController, thirdTaskController) {
+], function (config, firstTaskController, secondTaskController, thirdTaskController) {
 
     var router;
     router = {
@@ -20,7 +20,7 @@ define([
         },
         renderHash: function () {
             if (location.hash === this.routes.first) {
-                firstTaskView.render();
+                firstTaskController.init();
             }
             if (location.hash === this.routes.second) {
                 secondTaskController.init();
