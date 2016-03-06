@@ -22,12 +22,12 @@ define([
 
                     if (!model.checkInputValue(inputValue)) {
                         view.throwNotification();
-                        view.render();
 
-                        //console.log(inputValue);
-                        //console.log(model.currentNoticeCount);
-                        //console.log(model.noticeClasses);
-                        //console.log(model.noticeMessage);
+
+                        console.log(inputValue);
+                        console.log(model.currentNoticeCount);
+                        console.log(model.noticeClasses);
+                        console.log(model.noticeMessage);
                         return;
                     }
 
@@ -35,13 +35,18 @@ define([
                     ajax.send({url: 'post_response', method: 'POST', data: model.inputData}, function (response) {
                         var serverResponse = response.xhr;
                         model.checkServerResponse(serverResponse.status, serverResponse.statusText, serverResponse.responseText);
-                        //console.log(serverResponse.status, serverResponse.responseText, serverResponse.statusText);
-                        //console.log(model.currentNoticeCount);
-                        //console.log(model.noticeClasses);
-                        //console.log(model.noticeMessage);
+
+
+
+                        console.log(inputValue);
+                        console.log(serverResponse.status, serverResponse.responseText, serverResponse.statusText);
+                        console.log(model.currentNoticeCount);
+                        console.log(model.noticeClasses);
+                        console.log(model.noticeMessage);
+
+
 
                         view.throwNotification();
-                        view.render();
                         event.target.removeAttribute('disable');
                     });
                 }

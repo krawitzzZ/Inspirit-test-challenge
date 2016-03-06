@@ -8,21 +8,24 @@ define([
 
     var firstTaskView = {
         compileTemplate: _.template(template),
-        throwNotification: function () { //check mistakes
-            var $newNotification = $('<div>');
-            $newNotification.addClass(model.noticeClasses);
-            $newNotification.text(model.noticeMessage);
-            this.$notificationBlock.prepend($newNotification);
-        },
         init: function () {
+            config.mainPageSelectors.$parentEl.html(this.compileTemplate());
             this.$notificationBlock = $('.notificationBlock');
-            config.mainPageSelectors.$parentEl.html(this.compileTemplate({buttonText: model.buttonText}));
+            this.$button = $('.firstTaskButton').text(model.buttonText);
         },
-        render: function () {
-            config.mainPageSelectors.$parentEl.html(this.compileTemplate({
-                buttonText: model.buttonText
-            }));
+        throwNotification: function () {
+            if (this.$notificationBlock.children().size() == model.MAX_NOTICE_COUNT) {
+                this.$notificationBlock.children().last().remove();
+            }
+            var $newNotification = $('<div>').addClass(model.noticeClasses).text(model.noticeMessage);
+            this.$notificationBlock.prepend($newNotification);
+            this.$button.text(model.buttonText);
         }
     };
     return firstTaskView;
 });
+
+
+//1. сделать общий конфиг с константами, где будут текстовые названия узлов
+//2. в модель добить typeOfNotification: 'userError' || 'error' || 'success'
+//и в зависимости от этого во view сделать switch в throwNotification

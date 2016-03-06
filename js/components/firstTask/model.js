@@ -2,9 +2,14 @@ define([], function () {
 
     var thirdTaskModel = {
 
-        buttonText: 'Submit',
-        currentNoticeCount: 0,
+        USER_ERROR: 'user error',
+        ERROR: 'error',
+        SUCCESS: 'success',
+        ALERT_ERROR: 'alert alert-danger',
+        ALERT_SUCCESS: 'alert alert-success',
         MAX_NOTICE_COUNT: 5,
+        currentNoticeCount: 0,
+        buttonText: 'Submit',
         inputData: {},
         noticeMessage: '',
         noticeClasses: '',
@@ -21,8 +26,9 @@ define([], function () {
         },
         checkInputValue: function (inputValue) {
             if (!inputValue) {
+                this.typeOfNotice = this.USER_ERROR;
                 this.noticeMessage = 'Oops! Something wrong here..';
-                this.noticeClasses = 'alert alert-danger';
+                this.noticeClasses = this.ALERT_ERROR;
                 this.incrementNotices();
                 return false;
             }
@@ -32,13 +38,15 @@ define([], function () {
         checkServerResponse: function (status, statusText, responseText) {
             if (status != 200) {
                 this.incrementNotices();
+                this.typeOfNotice = this.ERROR;
                 this.noticeMessage = statusText;
-                this.noticeClasses = 'alert alert-danger';
+                this.noticeClasses = this.ALERT_ERROR;
                 return;
             }
             this.resetNoticeCount();
+            this.typeOfNotice = this.SUCCESS;
             this.noticeMessage = responseText;
-            this.noticeClasses = 'alert alert-success';
+            this.noticeClasses = this.ALERT_SUCCESS;
         }
     };
     return thirdTaskModel;
