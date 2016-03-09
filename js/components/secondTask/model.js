@@ -7,6 +7,9 @@ define([], function () {
         clickCount: 0,
         wrapperColor: '',
         paintWrapper: function (serverResponse) {
+            if (typeof serverResponse !== 'boolean') {
+                return;
+            }
             if (serverResponse) {
                 this.wrapperColor = 'green';
             } else {
@@ -14,16 +17,25 @@ define([], function () {
             }
         },
         successCounter: function (serverResponse) {
+            if (typeof serverResponse !== 'boolean') {
+                return;
+            }
             if (serverResponse) {
                 this.successes++;
             }
         },
         failCounter: function (serverResponse) {
+            if (typeof serverResponse !== 'boolean') {
+                return;
+            }
             if (!serverResponse) {
                 this.failures++;
             }
         },
         failSinceSuccessCounter: function (serverResponse) {
+            if (typeof serverResponse !== 'boolean') {
+                return;
+            }
             if (!serverResponse) {
                 this.failureSinceLastSuccess++;
             } else {

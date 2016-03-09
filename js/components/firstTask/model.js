@@ -1,6 +1,6 @@
 define([], function () {
 
-    var thirdTaskModel = {
+    var firstTaskModel = {
 
         USER_ERROR: 'user error',
         ERROR: 'error',
@@ -36,6 +36,13 @@ define([], function () {
             return true;
         },
         checkServerResponse: function (serverResponse) {
+            if ((typeof serverResponse !== 'object') || !serverResponse.hasOwnProperty('status')) {
+                this.incrementNotices();
+                this.typeOfNotice = this.ERROR;
+                this.noticeMessage = 'An internal error occurred';
+                this.noticeClasses = this.ALERT_ERROR;
+                return;
+            }
             if (serverResponse.status !== 200) {
                 this.incrementNotices();
                 this.typeOfNotice = this.ERROR;
@@ -49,5 +56,5 @@ define([], function () {
             this.noticeClasses = this.ALERT_SUCCESS;
         }
     };
-    return thirdTaskModel;
+    return firstTaskModel;
 });

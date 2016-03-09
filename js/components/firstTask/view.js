@@ -34,7 +34,6 @@ define([
                     });
                     break;
                 default:
-                    $newNotification = $('<div>').addClass(model.ALERT_ERROR).text('An internal error occurred');
                     this.$notificationBlock.prepend($newNotification);
             }
             this.$button.text(model.buttonText);
