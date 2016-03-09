@@ -286,25 +286,27 @@ $(document).ready(function () {
 
         if (!inputValue) {
             $(this).text('Resubmit');
-            notificationManager.showErrorNotification('Oops! Something wrong here.. try type "error"');                                                                                     //удалить потом
+            notificationManager.showErrorNotification('Oops! Something wrong here.. try type "error"');
         } else {
 
             inputData.request = "any text";
 
-            if (inputValue.search(regExp) == 0) {
+            if (inputValue.search(regExp) === 0) {
                 $(this).text('Resubmit');
                 inputData.request = "error";
             }
 
             var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-            var xhr = new XHR;
+            var xhr = new XHR();
             xhr.open('POST', 'http://careers.intspirit.com/endpoint/post_response', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(inputData));
             xhr.onreadystatechange = function () {
 
             ///call errorNotification method depend on status of server response
-                if (this.readyState != 4) return;
+                if (this.readyState != 4) {
+                    return;
+                }
                 switch (this.status) {
                     case 200 : notificationManager.showSuccessNotification(this.responseText);
                         break;
@@ -312,7 +314,7 @@ $(document).ready(function () {
                         break;
                     default : notificationManager.showErrorNotification(this.status + ': ' + this.statusText);
                 }
-            }
+            };
         }
     }); ///end of postButton click
 
@@ -329,7 +331,9 @@ $(document).ready(function () {
 
                 ///change div wrapper color depend on server response
                     buttonWrapper.removeClass('red green');
-                    if (!response.result) buttonWrapper.addClass('red');
+                    if (!response.result) {
+                        buttonWrapper.addClass('red');
+                    }
                     buttonWrapper.addClass('green');
 
                 ///calculating errors, successes etc.
