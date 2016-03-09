@@ -48,3 +48,4 @@ Temporary Items
 .idea/
 old/
 js/bower_components/
+tests/lib/
