@@ -2,15 +2,17 @@ define([], function () {
 
     var thirdTaskModel = {
 
+        FRUIT: 'fruit',
+        VEGETABLE: 'vegetable',
         productsExist: false,
         fruits: {},
         vegetables: {},
         addProduct: function (type, item) {
             if (!this.fruits.hasOwnProperty(item) && !this.vegetables.hasOwnProperty(item)) {
                 switch (type) {
-                    case 'fruit': this.fruits[item] = 1;
+                    case this.FRUIT: this.fruits[item] = 1;
                         break;
-                    case  'vegetable': this.vegetables[item] = 1;
+                    case  this.VEGETABLE: this.vegetables[item] = 1;
                         break;
                 }
                 this.productsExist = true;
@@ -20,9 +22,9 @@ define([], function () {
         },
         countProducts: function (type, item) {
             switch (type) {
-                case 'fruit': this.fruits[item]++;
+                case this.FRUIT: this.fruits[item]++;
                     break;
-                case  'vegetable': this.vegetables[item]++;
+                case  this.VEGETABLE: this.vegetables[item]++;
                     break;
             }
         },

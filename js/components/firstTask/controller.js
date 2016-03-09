@@ -16,38 +16,24 @@ define([
             document.body.onclick = function (event) {
                 if (event.target.classList.contains('firstTaskButton')) {
                     event.preventDefault();
-                    event.target.setAttribute('disable', 'true');
+                    event.target.setAttribute('disabled', 'true');
 
-                    var inputValue = document.getElementById('firstTaskInput').value;
+                    var formInput = document.getElementById('firstTaskInput'),
+                        inputValue = formInput.value;
 
                     if (!model.checkInputValue(inputValue)) {
                         view.throwNotification();
-
-
-                        console.log(inputValue);
-                        console.log(model.currentNoticeCount);
-                        console.log(model.noticeClasses);
-                        console.log(model.noticeMessage);
+                        event.target.removeAttribute('disabled');
                         return;
                     }
 
+                    formInput.value = null;
 
                     ajax.send({url: 'post_response', method: 'POST', data: model.inputData}, function (response) {
                         var serverResponse = response.xhr;
-                        model.checkServerResponse(serverResponse.status, serverResponse.statusText, serverResponse.responseText);
-
-
-
-                        console.log(inputValue);
-                        console.log(serverResponse.status, serverResponse.responseText, serverResponse.statusText);
-                        console.log(model.currentNoticeCount);
-                        console.log(model.noticeClasses);
-                        console.log(model.noticeMessage);
-
-
-
+                        model.checkServerResponse(serverResponse);
                         view.throwNotification();
-                        event.target.removeAttribute('disable');
+                        event.target.removeAttribute('disabled');
                     });
                 }
             };

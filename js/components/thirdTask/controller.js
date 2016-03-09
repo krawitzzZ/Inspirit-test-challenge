@@ -16,12 +16,13 @@ define([
             document.body.onclick = function (event) {
                 if (event.target.classList.contains('getFetch')) {
                     event.preventDefault();
-                    event.target.setAttribute('disable', 'true');
+                    event.target.setAttribute('disabled', 'true');
+
                     ajax.send({url: 'data_set'}, function (response) {
                         var serverResponse = response.data;
                         model.addProduct(serverResponse.type, serverResponse.item);
                         view.render();
-                        event.target.removeAttribute('disable');
+                        event.target.removeAttribute('disabled');
                     });
                 }
                 if (event.target.classList.contains('clearFetch')) {

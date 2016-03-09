@@ -10,9 +10,9 @@ define([], function () {
         MAX_NOTICE_COUNT: 5,
         currentNoticeCount: 0,
         buttonText: 'Submit',
-        inputData: {},
         noticeMessage: '',
         noticeClasses: '',
+        inputData: {},
         incrementNotices: function () {
             if (this.currentNoticeCount >= this.MAX_NOTICE_COUNT) {
                 return;
@@ -35,17 +35,17 @@ define([], function () {
             this.inputData.request = inputValue;
             return true;
         },
-        checkServerResponse: function (status, statusText, responseText) {
-            if (status != 200) {
+        checkServerResponse: function (serverResponse) {
+            if (serverResponse.status != 200) {
                 this.incrementNotices();
                 this.typeOfNotice = this.ERROR;
-                this.noticeMessage = statusText;
+                this.noticeMessage = serverResponse.statusText;
                 this.noticeClasses = this.ALERT_ERROR;
                 return;
             }
             this.resetNoticeCount();
             this.typeOfNotice = this.SUCCESS;
-            this.noticeMessage = responseText;
+            this.noticeMessage = serverResponse.responseText;
             this.noticeClasses = this.ALERT_SUCCESS;
         }
     };

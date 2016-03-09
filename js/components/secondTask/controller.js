@@ -16,7 +16,7 @@ define([
             document.body.onclick = function (event) {
                 if (event.target.classList.contains('secondTaskButton')) {
                     event.preventDefault();
-                    event.target.setAttribute('disable', 'true');
+                    event.target.setAttribute('disabled', 'true');
                     ajax.send({url: 'response_codes'}, function (response) {
                         var serverResponse = response.data.result;
                         model.paintWrapper(serverResponse);
@@ -26,10 +26,10 @@ define([
                         model.failSinceSuccessCounter(serverResponse);
                         model.failPercentageCounter(serverResponse);
                         view.render();
-                        event.target.removeAttribute('disable');
+                        event.target.removeAttribute('disabled');
                     });
                 }
-            };
+            }
         }
     };
     return secondTaskController;
