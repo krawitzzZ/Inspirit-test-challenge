@@ -10,5 +10,5 @@ define(['jquery'], function ($) {
             $parentEl: $('#main'),
             $navBar: $('.nav li')
         }
-    }
+    };
 });

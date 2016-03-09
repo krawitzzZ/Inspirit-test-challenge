@@ -36,7 +36,7 @@ define([], function () {
             return true;
         },
         checkServerResponse: function (serverResponse) {
-            if (serverResponse.status != 200) {
+            if (serverResponse.status !== 200) {
                 this.incrementNotices();
                 this.typeOfNotice = this.ERROR;
                 this.noticeMessage = serverResponse.statusText;

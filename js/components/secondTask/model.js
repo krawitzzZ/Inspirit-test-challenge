@@ -31,7 +31,7 @@ define([], function () {
             }
         },
         failPercentageCounter: function () {
-            this.failuresPercentage = ((this.failures * 100) / this.clickCount).toFixed(2)
+            this.failuresPercentage = ((this.failures * 100) / this.clickCount).toFixed(2);
         },
         clickCounter: function () {
             this.clickCount++;

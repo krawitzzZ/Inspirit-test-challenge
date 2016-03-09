@@ -14,7 +14,7 @@ define([
             this.$button = $('.firstTaskButton').text(model.buttonText);
         },
         throwNotification: function () {
-            if (this.$notificationBlock.children().size() == model.MAX_NOTICE_COUNT) {
+            if (this.$notificationBlock.children().size() === model.MAX_NOTICE_COUNT) {
                 this.$notificationBlock.children().last().remove();
             }
             var $newNotification = $('<div>').addClass(model.noticeClasses).text(model.noticeMessage);

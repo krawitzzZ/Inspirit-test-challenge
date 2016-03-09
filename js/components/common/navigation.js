@@ -7,7 +7,7 @@ define([
             navBar.mainPageSelectors.$navBar.on('click', function () {
                 navBar.mainPageSelectors.$navBar.removeClass('active');
                 $(this).addClass('active');
-            })
+            });
         };
-    return navigation
+    return navigation;
 });

@@ -29,7 +29,7 @@ define([
                         event.target.removeAttribute('disabled');
                     });
                 }
-            }
+            };
         }
     };
     return secondTaskController;
