@@ -10,9 +10,9 @@ define([], function () {
         MAX_NOTICE_COUNT: 5,
         currentNoticeCount: 0,
         buttonText: 'Submit',
-        inputData: {},
         noticeMessage: '',
         noticeClasses: '',
+        inputData: {},
         incrementNotices: function () {
             if (this.currentNoticeCount >= this.MAX_NOTICE_COUNT) {
                 return;
