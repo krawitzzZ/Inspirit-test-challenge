@@ -8,7 +8,6 @@ define(function (require) {
     function BaseView(options) {
         EventEmitter.apply(this);
 
-        console.log(options.model);
 
         this.model = options.model || null;
         this.template = options.template || '';

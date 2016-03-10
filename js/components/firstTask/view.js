@@ -37,7 +37,7 @@ define(function (require) {
             this.model.get(value)
                 .done(function (text) {
 
-                    that.subView.showSuccess()
+                    that.subView.showSuccess();
                     // cases
                     // 1. error -> success
                     // 2. success -> success
@@ -89,7 +89,7 @@ define(function (require) {
             this.model.append(text);
             this.render();
         }
-    }
+    };
 
     // var firstTaskView = {
     //     compileTemplate: _.template(template),

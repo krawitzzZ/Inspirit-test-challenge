@@ -7,23 +7,22 @@ define(function (require) {
     }
 
     Model.prototype.get = function (value) {
-        var defer = $.Deferred()
+        //var defer = $.Deferred();
         
         return API.postResponse(value);
 
-        API.postResponse(value).done(function (data, textStatus, jqXHR) {
-            if (jqXHR.status === 200) {
-                defer.resolve(data);
-            }
-            else if (jqXHR.status === 204) {
-                defer.reject(jqXHR.statusText);
-            }
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            console.log(arguments);
-            defer.reject('Unknown error');
-        });
-
-        return defer.promise();
+        //API.postResponse(value).done(function (data, textStatus, jqXHR) {
+        //    if (jqXHR.status === 200) {
+        //        defer.resolve(data);
+        //    }
+        //    else if (jqXHR.status === 204) {
+        //        defer.reject(jqXHR.statusText);
+        //    }
+        //}).fail(function (jqXHR, textStatus, errorThrown) {
+        //    console.log(arguments);
+        //    defer.reject('Unknown error');
+        //});
+        //return defer.promise();
     };
 
     return Model;

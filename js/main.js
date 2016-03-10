@@ -7,7 +7,7 @@ require.config({
         signals: 'vendors/js-signals/dist/signals.min',
         global: 'components/common/global',
         EventEmitter: 'vendors/eventEmitter/EventEmitter.min'
-    },
+    }
 });
 
 requirejs.onError = function (err) {
@@ -19,6 +19,9 @@ requirejs.onError = function (err) {
     throw err;
 };
 
-require(['components/router'], function (router) {
+require([
+    'components/router'
+], function (router) {
+
     router.init();
 });

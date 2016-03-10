@@ -30,6 +30,6 @@ define(function (require) {
 
 
 
-//1. Find error with AJAX "No Content"
+//1. Find error with AJAX "No Content" serverStatus: 0
 //2. Hash - routes
 //3. Success/error - view/model  - array of strings - sub views
