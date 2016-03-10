@@ -20,6 +20,8 @@
     "jquery": "^2.2.1",
     "underscore": "^1.8.3",
     "requirejs": "^2.1.22",
-    "text": "requirejs-text#^2.0.14"
+    "text": "requirejs-text#^2.0.14",
+    "crossroads.js": "crossroads#^0.12.2",
+    "js-signals": "signals#^1.0.0"
   }
 }
