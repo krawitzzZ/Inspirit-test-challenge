@@ -1,8 +1,8 @@
 require.config({
     paths: {
-        jquery: 'vendors/jquery',
-        underscore: 'vendors/underscore',
-        text: 'vendors/text'
+        jquery: 'vendors/jquery/dist/jquery.min',
+        underscore: 'vendors/underscore/underscore-min',
+        text: 'vendors/text/text'
     }
 });
 
@@ -13,5 +13,4 @@ require([
 
     router.init();
     navigation();
-
 });

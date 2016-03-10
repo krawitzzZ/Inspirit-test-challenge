@@ -1,0 +1,25 @@
+{
+  "name": "Intspirit-test-challenge",
+  "homepage": "https://github.com/krawitzzZ/Intspirit-test-challenge",
+  "authors": [
+    "Nikita Demin <nikita@intspirit.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eventEmitter": "EventEmitter.js#^4.3.0",
+    "jquery": "^2.2.1",
+    "underscore": "^1.8.3",
+    "requirejs": "^2.1.22",
+    "text": "requirejs-text#^2.0.14"
+  }
+}
