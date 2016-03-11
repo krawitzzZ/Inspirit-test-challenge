@@ -3,11 +3,13 @@ define(function (require) {
         _ = require('underscore'),
         tmpl = require('text!./template.html'),
         BaseView = require('components/common/base_view'),
-        Model1 = require('./model');
+        SubView = require('./subComponents/subView'),
+        Model = require('./model'),
+        SubModel = require('./subComponents/subModel');
 
     function View() {
         BaseView.call(this, {
-            model: new Model1(),
+            model: new Model(),
             template: _.template(tmpl),
             $el: $('#main'),
             events: {
@@ -17,8 +19,14 @@ define(function (require) {
 
         this.$ = {
             input: '#firstTaskInput',
-            btn: '#btn-submit-first'
+            btn: '#btn-submit-first',
+            noticeBlock: '.notificationBlock'
         };
+
+        this.subView = new SubView({
+            model: new SubModel(),
+            $el: this.noticeBlock
+        });
     }
 
     View.prototype = Object.create(BaseView.prototype);
@@ -31,14 +39,15 @@ define(function (require) {
 
         e.preventDefault();
 
-        value = $(this.$.input).val().trim();
+        value = $(that.$.input).val().trim();
 
         if (value) {
             $btnSubmit.attr('disabled', 'true');
-            this.model.get(value)
+            that.model.get(value)
                 .done(function (text) {
 
-                    //that.subView.showSuccess();
+
+                    that.subView.showSuccess(text);
                     // cases
                     // 1. error -> success
                     // 2. success -> success
@@ -47,18 +56,36 @@ define(function (require) {
                     // reset sub views model
                     // render sub view
 
-                    console.log('done', arguments);
                 })
                 .fail(function (text) {
+
+                    that.subView.addError(text);
+
+
+
                     // 1. error -> error
                     // 2. success -> error
                     // TODO: call something private that handle error only
-                    console.log('fail', arguments);
                 })
                 .always(function () {
                     $btnSubmit.removeAttr('disabled');
                 });
         } else {
+
+            that.subView.addError(that.subView.userErrorMsg);
+
+
+
+
+
+
+
+
+
+
+
+
+
             // 1. error -> error
             // 2. success -> error
             // TODO: call something private that handle error only
@@ -66,31 +93,37 @@ define(function (require) {
     };
 
     return View;
+});
 
-    function SubModel() {
-        this.errors = [];
-    }
+    //function SubModel() {
+    //    this.errors = [];
+    //}
+    //
+    //SubModel.prototype.reset = function () {
+    //    this.errors = [];
+    //};
+    //
+    //SubModel.prototype.append = function (text) {
+    //    this.errors.push(text);
+    //};
+    //
+    //
+    //var subView = {
+    //    showSuccess: function () {
+    //        this.model.reset();
+    //        this.render();
+    //    },
+    //
+    //    appendError: function (text) {
+    //        this.model.append(text);
+    //        this.render();
+    //    }
+    //};
 
-    SubModel.prototype.reset = function () {
-        this.errors = [];
-    };
-
-    SubModel.prototype.append = function (text) {
-        this.errors.push(text);
-    };
 
 
-    var subView = {
-        showSuccess: function () {
-            this.model.reset();
-            this.render();
-        },
 
-        appendError: function (text) {
-            this.model.append(text);
-            this.render();
-        }
-    };
+
 
     // var firstTaskView = {
     //     compileTemplate: _.template(template),
@@ -126,4 +159,4 @@ define(function (require) {
     //     }
     // };
     // return firstTaskView;
-});
+
