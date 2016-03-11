@@ -1,32 +1,15 @@
 define(function (require) {
-    var $ = require('jquery'),
-        API = require('components/common/network/api');
+    var API = require('components/common/network/api');
 
     function Model() {
-
     }
 
     Model.prototype.get = function (value) {
-        //var defer = $.Deferred();
-        
         return API.postResponse(value);
-
-        //API.postResponse(value).done(function (data, textStatus, jqXHR) {
-        //    if (jqXHR.status === 200) {
-        //        defer.resolve(data);
-        //    }
-        //    else if (jqXHR.status === 204) {
-        //        defer.reject(jqXHR.statusText);
-        //    }
-        //}).fail(function (jqXHR, textStatus, errorThrown) {
-        //    console.log(arguments);
-        //    defer.reject('Unknown error');
-        //});
-        //return defer.promise();
     };
 
     return Model;
-
+});
 
     // var firstTaskModel = {
 
@@ -85,4 +68,3 @@ define(function (require) {
     //     }
     // };
     // return firstTaskModel;
-});

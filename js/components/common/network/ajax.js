@@ -11,7 +11,6 @@ define(['jquery'], function ($) {
     };
 
     that.post = function (url, data) {
-        console.log(JSON.stringify(data));
         return $.ajax({
             type: 'POST',
             url: url,

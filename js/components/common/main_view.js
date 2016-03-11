@@ -9,7 +9,7 @@ define(function (require) {
         this.$navBar.on('click', function () {
             that.$navBar.removeClass('active');
             $(this).addClass('active');
-        })
+        });
     }
 
     MainView.prototype.showView = function (view) {

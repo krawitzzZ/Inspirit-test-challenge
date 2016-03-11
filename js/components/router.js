@@ -2,8 +2,7 @@ define(function (require) {
     var crossroads = require('crossroads'),
         global = require('global'),
         MainView = require('./common/main_view'),
-        View1 = require('./firstTask/view'),
-        Model1 = require('./firstTask/model');
+        View1 = require('./firstTask/view');
 
     var mainView;
 
@@ -25,10 +24,7 @@ define(function (require) {
             mainView = new MainView();
 
             crossroads.addRoute('/first', function () {
-                var model = new Model1();
-                var view = new View1({
-                    model: model
-                });
+                var view = new View1();
                 mainView.showView(view);
             });
 
@@ -40,5 +36,5 @@ define(function (require) {
                 console.log(3);
             });
         }
-    }
+    };
 });

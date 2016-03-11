@@ -2,12 +2,10 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         EventEmitter = require('EventEmitter'),
-        global = require('global'),
-        document = global.document;
+        global = require('global');
 
     function BaseView(options) {
-        EventEmitter.apply(this);
-
+        EventEmitter.apply(this, arguments);
 
         this.model = options.model || null;
         this.template = options.template || '';
@@ -21,32 +19,36 @@ define(function (require) {
     BaseView.prototype.render = function (data) {
         var that = this;
 
-        this.$el.html(this.template(data));
+        that.$el.html(this.template(data));
 
-        _.each(this.events, function (value, key) {
+        _.each(that.events, function (value, key) {
             var meta = key.split(' '),
                 eventName = meta[0],
                 selector = meta[1],
                 handler = that[value];
 
             if (!eventName) {
-                throw new Error('event name');
+                throw new Error('no event name');
             }
 
             if (!selector) {
-                throw new Error('selector');
+                throw new Error('no selector');
             }
 
             if (!handler) {
-                throw new Error('handler');
+                throw new Error('no handler');
             }
 
-            $(document.body).on(eventName, selector, $.proxy(handler, that));
+            $(selector).on(eventName, $.proxy(handler, that));
         });
     };
 
     BaseView.prototype.dispose = function () {
+        var that = this;
 
+        _.each(that, function (value, key) {
+            delete that[key];
+        });
     };
 
     return BaseView;
