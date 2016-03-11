@@ -11,11 +11,10 @@ define(['jquery'], function ($) {
     };
 
     that.post = function (url, data) {
+        console.log(JSON.stringify(data));
         return $.ajax({
             type: 'POST',
             url: url,
-            dataType: 'json',
-            contentType: 'application/json',
             data: data || {}
         });
     };
@@ -40,17 +39,4 @@ define(['jquery'], function ($) {
     };
 
     return that;
-
-    // var ajaxRequest = {
-    //     send: function (options, callback) {
-    //         return $.ajax({
-    //             url: 'http://careers.intspirit.com/endpoint/' + options.url,
-    //             type: options.method || 'GET',
-    //             processData: false,
-    //             contentType: 'application/json',
-    //             data: JSON.stringify(options.data)
-    //         });
-    //     }
-    // };
-    // return ajaxRequest;
 });

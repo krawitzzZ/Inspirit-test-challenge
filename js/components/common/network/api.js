@@ -28,8 +28,6 @@ define(function (require) {
     return that;
 });
 
-
-
-//1. Find error with AJAX "No Content" serverStatus: 0
-//2. Hash - routes
+//1. Find error with AJAX "No Content" : done
+//2. Hash - routes : done
 //3. Success/error - view/model  - array of strings - sub views

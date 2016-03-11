@@ -37,12 +37,12 @@ define(function (require) {
             this.model.get(value)
                 .done(function (text) {
 
-                    that.subView.showSuccess();
+                    //that.subView.showSuccess();
                     // cases
                     // 1. error -> success
                     // 2. success -> success
                     // TODO: call something private that handle success only
-                    
+
                     // reset sub views model
                     // render sub view
 
@@ -56,7 +56,7 @@ define(function (require) {
                 })
                 .always(function () {
                     $btnSubmit.removeAttr('disabled');
-                })
+                });
         } else {
             // 1. error -> error
             // 2. success -> error
