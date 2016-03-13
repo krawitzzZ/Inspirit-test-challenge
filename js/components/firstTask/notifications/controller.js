@@ -18,13 +18,18 @@ define(function (require) {
         this.model.appendError(text);
     };
 
-    NotificationController.prototype.showSuccess = function (text) {
-        this.model.resetErrors();
-        this.view.showSuccessNotification(text);
+    NotificationController.prototype.appendNewSuccess = function (text) {
+        this.model.appendSuccess(text);
     };
 
-    NotificationController.prototype.showErrors = function (data) {
-        this.view.showNewError(data);
+    NotificationController.prototype.showSuccess = function () {
+        this.model.resetErrors();
+        this.view.showSuccessNotification(this.model);
+    };
+
+    NotificationController.prototype.showErrors = function () {
+        this.model.resetSuccesses();
+        this.view.showNewError(this.model);
     };
 
     return NotificationController;

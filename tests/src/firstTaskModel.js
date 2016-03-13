@@ -12,7 +12,7 @@ var firstTaskModel = {
     noticeClasses: '',
     inputData: {},
     incrementNotices: function () {
-        if (this.currentNoticeCount >= this.MAX_NOTICE_COUNT) {
+        if (this.currentNoticeCount >= this.MAX_ERRORS_COUNT) {
             return;
         }
         this.currentNoticeCount++;

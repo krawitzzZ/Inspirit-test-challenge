@@ -45,12 +45,13 @@ define(function (require) {
                 .done(function (text) {
                     $btnSubmit.text('Submit');
                     $(that.$.input).val('');
-                    that.errorController.showSuccess(text);
+                    that.errorController.appendNewSuccess(text);
+                    that.errorController.showSuccess();
                 })
                 .fail(function (text) {
                     $btnSubmit.text('Resubmit');
                     that.errorController.appendServerError(text);
-                    that.errorController.showErrors(that.errorController.model);
+                    that.errorController.showErrors();
                 })
                 .always(function () {
                     $btnSubmit.removeAttr('disabled');
@@ -58,7 +59,7 @@ define(function (require) {
         } else {
             $btnSubmit.text('Resubmit');
             that.errorController.appendUserError();
-            that.errorController.showErrors(that.errorController.model);
+            that.errorController.showErrors();
         }
     };
 
