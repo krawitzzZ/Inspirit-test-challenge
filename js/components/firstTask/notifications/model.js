@@ -2,6 +2,7 @@ define(function (require) {
 
     function NotificationModel() {
         this.errors = [];
+        this.successes = [];
     }
 
     NotificationModel.prototype.appendError = function (errorText) {
@@ -10,6 +11,14 @@ define(function (require) {
 
     NotificationModel.prototype.resetErrors = function () {
         this.errors = [];
+    };
+
+    NotificationModel.prototype.appendSuccess = function (successText) {
+        this.successes.push(successText);
+    };
+
+    NotificationModel.prototype.resetSuccesses = function () {
+        this.successes = [];
     };
 
     return NotificationModel;
