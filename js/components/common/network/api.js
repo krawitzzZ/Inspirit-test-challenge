@@ -29,16 +29,30 @@ define(function (require) {
         var defer = $.Deferred();
 
         ajax.get(baseUrl + '/response_codes')
-            .done(function (data) {
-                if (data.result === true) {
-                    defer.resolve(true);
-                }
-                else if (data.result === false) {
-                    defer.reject(false);
-                }
+        .done(function (data) {
+            if (data.result === true) {
+                defer.resolve(true);
+            }
+            else if (data.result === false) {
+                defer.reject(false);
+            }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(arguments);
             defer.reject('Unknown error');
+        });
+
+        return defer.promise();
+    };
+
+    that.dataSet = function () {
+        var defer = $.Deferred();
+
+        ajax.get(baseUrl + '/data_set')
+            .done(function (data) {
+                defer.resolve(data);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(arguments);
+                defer.reject('Unknown error');
         });
 
         return defer.promise();

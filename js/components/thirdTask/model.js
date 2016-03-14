@@ -1,38 +1,57 @@
-define([], function () {
+define(function (require) {
+    var $ = require('jquery'),
+        help = require('./helper'),
+        API = require('components/common/network/api');
 
-    var thirdTaskModel = {
+    function Model() {
+        this.productsExist = false;
+        this.fruits = {};
+        this.vegetables = {};
+    }
 
-        FRUIT: 'fruit',
-        VEGETABLE: 'vegetable',
-        productsExist: false,
-        fruits: {},
-        vegetables: {},
-        addProduct: function (type, item) {
-            if (!this.fruits.hasOwnProperty(item) && !this.vegetables.hasOwnProperty(item)) {
-                switch (type) {
-                    case this.FRUIT: this.fruits[item] = 1;
-                        break;
-                    case  this.VEGETABLE: this.vegetables[item] = 1;
-                        break;
-                }
-                this.productsExist = true;
-            } else {
-                this.countProducts(type, item);
-            }
-        },
-        countProducts: function (type, item) {
-            switch (type) {
-                case this.FRUIT: this.fruits[item]++;
+    Model.prototype.get = function () {
+        //using defer for async chaining possibility in view
+        var defer = $.Deferred(),
+            that = this;
+        API.dataSet().done(function (serverResponse) {
+            that.addProduct(serverResponse);
+            defer.resolve(true);
+        });
+
+        return defer.promise();
+    };
+
+    Model.prototype.addProduct = function (serverResponse) {
+        if (!this.fruits.hasOwnProperty(serverResponse.item) && !this.vegetables.hasOwnProperty(serverResponse.item)) {
+            switch (serverResponse.type) {
+                case help.FRUIT: this.fruits[serverResponse.item] = 1;
                     break;
-                case  this.VEGETABLE: this.vegetables[item]++;
+                case help.VEGETABLE: this.vegetables[serverResponse.item] = 1;
                     break;
+                default: console.log('Unknown type of product');
             }
-        },
-        clearProducts: function () {
-            this.fruits = {};
-            this.vegetables = {};
-            this.productsExist = false;
+            this.productsExist = true;
+        } else {
+            this.countProducts(serverResponse);
         }
     };
-    return thirdTaskModel;
+
+    Model.prototype.countProducts = function (serverResponse) {
+        switch (serverResponse.type) {
+            case help.FRUIT: this.fruits[serverResponse.item]++;
+                break;
+            case help.VEGETABLE: this.vegetables[serverResponse.item]++;
+                break;
+            default: console.log('Unknown type of product');
+        }
+    };
+
+    Model.prototype.clearProducts = function () {
+        this.fruits = {};
+        this.vegetables = {};
+        this.productsExist = false;
+    };
+
+
+    return Model;
 });

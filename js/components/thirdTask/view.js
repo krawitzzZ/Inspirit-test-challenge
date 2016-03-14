@@ -1,20 +1,46 @@
-define([
-    'jquery',
-    'underscore',
-    'text!components/thirdTask/template.html',
-    'components/thirdTask/model',
-    '../../config'
-], function ($, _, template, model, config) {
+define(function (require) {
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        tmpl = require('text!./template.html'),
+        BaseView = require('components/common/base_view'),
+        Model = require('./model');
 
-    var thirdTaskView = {
-        compileTemplate: _.template(template),
-        render: function () {
-            config.mainPageSelectors.$parentEl.html(this.compileTemplate({
-                products: model.productsExist,
-                fruits: model.fruits,
-                vegetables: model.vegetables
-            }));
-        }
+    function View() {
+        BaseView.call(this, {
+            model: new Model(),
+            template: _.template(tmpl),
+            $el: $('#main'),
+            events: {
+                'click #getFetch': 'getFetch',
+                'click #clearFetch': 'clearFetch'
+            }
+        });
+    }
+
+    View.prototype = Object.create(BaseView.prototype);
+    View.prototype.constructor = View;
+
+    View.prototype.getFetch = function (e) {
+        var $btnGet = $(e.target),
+            that = this;
+
+        e.preventDefault();
+        $btnGet.attr('disabled', 'true');
+
+        that.model.get()
+        .done(function () {
+            that.render();
+        })
+        .always(function () {
+            $btnGet.removeAttr('disabled');
+        });
     };
-    return thirdTaskView;
+
+    View.prototype.clearFetch = function (e) {
+        e.preventDefault();
+        this.model.clearProducts();
+        this.render();
+    };
+
+    return View;
 });

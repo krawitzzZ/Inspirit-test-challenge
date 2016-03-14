@@ -3,7 +3,8 @@ define(function (require) {
         global = require('global'),
         MainView = require('./common/main_view'),
         View1 = require('./firstTask/view'),
-        View2 = require('./secondTask/view');
+        View2 = require('./secondTask/view'),
+        View3 = require('./thirdTask/view');
 
     var mainView;
 
@@ -35,7 +36,8 @@ define(function (require) {
             });
 
             crossroads.addRoute('/third', function () {
-                console.log(3);
+                var view = new View3();
+                mainView.showView(view);
             });
         }
     };
