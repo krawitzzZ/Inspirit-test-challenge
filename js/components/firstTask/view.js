@@ -18,7 +18,6 @@ define(function (require) {
 
         this.$ = {
             input: '#firstTaskInput',
-            btn: '#btn-submit-first',
             noticeBlock: '.notificationBlock'
         };
 
@@ -42,20 +41,20 @@ define(function (require) {
         if (value) {
             $btnSubmit.attr('disabled', 'true');
             that.model.get(value)
-                .done(function (text) {
-                    $btnSubmit.text('Submit');
-                    $(that.$.input).val('');
-                    that.errorController.appendNewSuccess(text);
-                    that.errorController.showSuccess();
-                })
-                .fail(function (text) {
-                    $btnSubmit.text('Resubmit');
-                    that.errorController.appendServerError(text);
-                    that.errorController.showErrors();
-                })
-                .always(function () {
-                    $btnSubmit.removeAttr('disabled');
-                });
+            .done(function (text) {
+                $btnSubmit.text('Submit');
+                $(that.$.input).val('');
+                that.errorController.appendNewSuccess(text);
+                that.errorController.showSuccess();
+            })
+            .fail(function (text) {
+                $btnSubmit.text('Resubmit');
+                that.errorController.appendServerError(text);
+                that.errorController.showErrors();
+            })
+            .always(function () {
+                $btnSubmit.removeAttr('disabled');
+            });
         } else {
             $btnSubmit.text('Resubmit');
             that.errorController.appendUserError();

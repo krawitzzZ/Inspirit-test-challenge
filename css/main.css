@@ -86,7 +86,7 @@ footer.container b {
     background-color: #f28d87;
 }
 
-.secondTaskButton {
+#btn-get-second {
     position: absolute;
     left: calc(50% - 51px);
     top: calc(50% - 17px);

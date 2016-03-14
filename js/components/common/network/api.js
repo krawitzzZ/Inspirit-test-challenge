@@ -25,9 +25,24 @@ define(function (require) {
         return defer.promise();
     };
 
+    that.responseCodes = function () {
+        var defer = $.Deferred();
+
+        ajax.get(baseUrl + '/response_codes')
+            .done(function (data) {
+                if (data.result === true) {
+                    defer.resolve(true);
+                }
+                else if (data.result === false) {
+                    defer.reject(false);
+                }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(arguments);
+            defer.reject('Unknown error');
+        });
+
+        return defer.promise();
+    };
+
     return that;
 });
-
-//1. Find error with AJAX "No Content" : done
-//2. Hash - routes : done
-//3. Success/error - view/model  - array of strings - sub views

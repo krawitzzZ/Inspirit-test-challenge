@@ -16,10 +16,10 @@ define(function (require) {
     BaseView.prototype = Object.create(EventEmitter.prototype);
     BaseView.prototype.constructor = BaseView;
 
-    BaseView.prototype.render = function (data) {
+    BaseView.prototype.render = function () {
         var that = this;
 
-        that.$el.html(this.template(data));
+        that.$el.html(that.template(that.model));
 
         _.each(that.events, function (value, key) {
             var meta = key.split(' '),
