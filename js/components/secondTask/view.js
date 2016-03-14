@@ -27,15 +27,8 @@ define(function (require) {
         $btnGet.attr('disabled', 'true');
 
         that.model.get()
-        .done(function (serverResponse) {
-            that.model.renderData(serverResponse);
-            that.render(that.model);
-        })
-        .fail(function (serverResponse) {
-            that.model.renderData(serverResponse);
-            that.render(that.model);
-        })
         .always(function () {
+            that.render();
             $btnGet.removeAttr('disabled');
         });
     };
