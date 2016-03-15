@@ -1,6 +1,5 @@
 define(function (require) {
-    var $ = require('jquery'),
-        API = require('components/common/network/api');
+    var API = require('components/common/network/api');
 
     function Model() {
         this.clickCount = 0;
@@ -12,21 +11,7 @@ define(function (require) {
     }
 
     Model.prototype.get = function () {
-        //using defer for async chaining possibility in view
-        var defer = $.Deferred(),
-            that = this;
-
-        API.responseCodes()
-        .done(function (serverResponse) {
-            that.renderData(serverResponse);
-            defer.resolve(true);
-        })
-        .fail(function (serverResponse) {
-            that.renderData(serverResponse);
-            defer.resolve(true);
-        });
-
-        return defer.promise();
+        return API.responseCodes();
     };
 
     Model.prototype.renderData = function (serverResponse) {

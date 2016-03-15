@@ -27,10 +27,17 @@ define(function (require) {
         $btnGet.attr('disabled', 'true');
 
         that.model.get()
-        .always(function () {
-            that.render();
-            $btnGet.removeAttr('disabled');
-        });
+            .done(function (serverResponse) {
+                that.model.renderData(serverResponse);
+                that.render();
+            })
+            .fail(function (serverResponse) {
+                that.model.renderData(serverResponse);
+                that.render();
+            })
+            .always(function () {
+                $btnGet.removeAttr('disabled');
+            });
     };
 
     return View;

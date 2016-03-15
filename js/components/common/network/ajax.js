@@ -1,4 +1,6 @@
-define(['jquery'], function ($) {
+define(function (require) {
+    var $ = require('jquery');
+
     var that = {};
 
     that.get = function (url) {

@@ -1,7 +1,7 @@
 define(function (require) {
     var $ = require('jquery'),
         ajax = require('./ajax'),
-        baseUrl = 'http://careers.intspirit.com/endpoint';
+        baseUrl = 'http://secure-eyrie-74017.herokuapp.com/endpoint';
     
     var that = {};
 
