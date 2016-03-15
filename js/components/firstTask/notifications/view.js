@@ -2,8 +2,8 @@ define(function (require) {
     var $ = require('jquery');
 
     function NotificationView(options) {
-
-        this.$el = options.$el;
+        this.model = options.model;
+        this.$el = $('.notificationBlock');
 
         this.noticeClasses = {
             ALERT_ERROR: 'alert alert-danger',

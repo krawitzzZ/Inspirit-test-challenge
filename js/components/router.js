@@ -4,7 +4,12 @@ define(function (require) {
         MainView = require('./common/main_view'),
         View1 = require('./firstTask/view'),
         View2 = require('./secondTask/view'),
-        View3 = require('./thirdTask/view');
+        View3 = require('./thirdTask/view'),
+        Model1 = require('./firstTask/model'),
+        Model2 = require('./secondTask/model'),
+        Model3 = require('./thirdTask/model'),
+        SubView1 = require('./firstTask/notifications/view'),
+        SubModel1 = require('./firstTask/notifications/model');
 
     var mainView;
 
@@ -26,17 +31,34 @@ define(function (require) {
             mainView = new MainView();
 
             crossroads.addRoute('/first', function () {
-                var view = new View1();
+                var model = new Model1(),
+                    subModel = new SubModel1(),
+                    subView = new SubView1({
+                        model: subModel
+                    }),
+                    view = new View1({
+                        model: model,
+                        subView: subView
+                    });
+
                 mainView.showView(view);
             });
 
             crossroads.addRoute('/second', function () {
-                var view = new View2();
+                var model = new Model2(),
+                    view = new View2({
+                        model: model
+                    });
+
                 mainView.showView(view);
             });
 
             crossroads.addRoute('/third', function () {
-                var view = new View3();
+                var model = new Model3(),
+                    view = new View3({
+                        model: model
+                    });
+
                 mainView.showView(view);
             });
         }

@@ -2,13 +2,11 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         tmpl = require('text!./template.html'),
-        BaseView = require('components/common/base_view'),
-        Model = require('./model'),
-        ErrorController = require('./notifications/controller');
+        BaseView = require('components/common/base_view');
 
-    function View() {
+    function View(options) {
         BaseView.call(this, {
-            model: new Model(),
+            model: options.model,
             template: _.template(tmpl),
             $el: $('#main'),
             events: {
@@ -16,14 +14,11 @@ define(function (require) {
             }
         });
 
-        this.$ = {
-            input: '#firstTaskInput',
-            noticeBlock: '.notificationBlock'
-        };
+        this.subView = options.subView;
 
-        this.errorController = new ErrorController({
-            $el: this.$.noticeBlock
-        });
+        this.$ = {
+            input: '#firstTaskInput'
+        };
     }
 
     View.prototype = Object.create(BaseView.prototype);
@@ -44,23 +39,28 @@ define(function (require) {
             .done(function (text) {
                 $btnSubmit.text('Submit');
                 $(that.$.input).val('');
-                that.errorController.appendNewSuccess(text);
-                that.errorController.showSuccess();
+                that.subView.appendNewSuccess(text);
+                that.subView.showSuccess();
             })
             .fail(function (text) {
                 $btnSubmit.text('Resubmit');
-                that.errorController.appendServerError(text);
-                that.errorController.showErrors();
+                that.subView.appendServerError(text);
+                that.subView.showErrors();
             })
             .always(function () {
                 $btnSubmit.removeAttr('disabled');
             });
         } else {
             $btnSubmit.text('Resubmit');
-            that.errorController.appendUserError();
-            that.errorController.showErrors();
+            that.subView.appendUserError();
+            that.subView.showErrors();
         }
     };
 
     return View;
 });
+
+/*
+* переписать первый таск с переделанной сабвьюхой(сделать темплейт и смержить контроллер и вьюху)
+*
+* */

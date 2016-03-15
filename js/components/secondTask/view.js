@@ -2,12 +2,11 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         tmpl = require('text!./template.html'),
-        BaseView = require('components/common/base_view'),
-        Model = require('./model');
+        BaseView = require('components/common/base_view');
 
-    function View() {
+    function View(options) {
         BaseView.call(this, {
-            model: new Model(),
+            model: options.model,
             template: _.template(tmpl),
             $el: $('#main'),
             events: {
