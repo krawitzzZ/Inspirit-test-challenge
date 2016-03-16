@@ -49,3 +49,4 @@ Temporary Items
 old/
 js/vendors/
 js/bower_components/
+node_modules/

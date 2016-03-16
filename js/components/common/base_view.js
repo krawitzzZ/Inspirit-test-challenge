@@ -8,6 +8,7 @@ define(function (require) {
         EventEmitter.apply(this, arguments);
 
         this.model = options.model || null;
+        this.subView = options.subView || null;
         this.template = options.template || '';
         this.$el = options.$el || null;
         this.events = options.events || {};
@@ -41,6 +42,16 @@ define(function (require) {
 
             $(selector).on(eventName, $.proxy(handler, that));
         });
+
+        if (that.subView) {
+            if (typeof that.subView === Array) {
+                _.each(that.subView, function (view) {
+                    view.render();
+                });
+            } else {
+                that.subView.render();
+            }
+        }
     };
 
     BaseView.prototype.dispose = function () {

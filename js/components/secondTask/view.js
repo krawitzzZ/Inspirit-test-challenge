@@ -8,7 +8,7 @@ define(function (require) {
         BaseView.call(this, {
             model: options.model,
             template: _.template(tmpl),
-            $el: $('#main'),
+            $el: $(options.$el),
             events: {
                 'click #btn-get-second': 'getResponse'
             }

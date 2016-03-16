@@ -1,6 +1,5 @@
 define(function (require) {
-    var $ = require('jquery'),
-        help = require('./helper'),
+    var help = require('./helper'),
         API = require('components/common/network/api');
 
     function Model() {
@@ -10,25 +9,20 @@ define(function (require) {
     }
 
     Model.prototype.get = function () {
-        //using defer for async chaining possibility in view
-        var defer = $.Deferred(),
-            that = this;
-        API.dataSet().done(function (serverResponse) {
-            that.addProduct(serverResponse);
-            defer.resolve(true);
-        });
-
-        return defer.promise();
+        return API.dataSet();
     };
 
     Model.prototype.addProduct = function (serverResponse) {
         if (!this.fruits.hasOwnProperty(serverResponse.item) && !this.vegetables.hasOwnProperty(serverResponse.item)) {
             switch (serverResponse.type) {
-                case help.FRUIT: this.fruits[serverResponse.item] = 1;
+                case help.FRUIT:
+                    this.fruits[serverResponse.item] = 1;
                     break;
-                case help.VEGETABLE: this.vegetables[serverResponse.item] = 1;
+                case help.VEGETABLE:
+                    this.vegetables[serverResponse.item] = 1;
                     break;
-                default: console.log('Unknown type of product');
+                default:
+                    throw new Error('Unknown type of product');
             }
             this.productsExist = true;
         } else {
@@ -38,11 +32,14 @@ define(function (require) {
 
     Model.prototype.countProducts = function (serverResponse) {
         switch (serverResponse.type) {
-            case help.FRUIT: this.fruits[serverResponse.item]++;
+            case help.FRUIT:
+                this.fruits[serverResponse.item]++;
                 break;
-            case help.VEGETABLE: this.vegetables[serverResponse.item]++;
+            case help.VEGETABLE:
+                this.vegetables[serverResponse.item]++;
                 break;
-            default: console.log('Unknown type of product');
+            default:
+                throw new Error('Unknown type of product');
         }
     };
 
@@ -51,7 +48,6 @@ define(function (require) {
         this.vegetables = {};
         this.productsExist = false;
     };
-
 
     return Model;
 });

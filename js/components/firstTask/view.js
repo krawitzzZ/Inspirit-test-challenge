@@ -7,14 +7,13 @@ define(function (require) {
     function View(options) {
         BaseView.call(this, {
             model: options.model,
+            subView: options.subView,
             template: _.template(tmpl),
-            $el: $('#main'),
+            $el: $(options.$el),
             events: {
                 'click #btn-submit-first': 'submit'
             }
         });
-
-        this.subView = options.subView;
 
         this.$ = {
             input: '#firstTaskInput'
@@ -39,13 +38,11 @@ define(function (require) {
             .done(function (text) {
                 $btnSubmit.text('Submit');
                 $(that.$.input).val('');
-                that.subView.appendNewSuccess(text);
-                that.subView.showSuccess();
+                that.subView.appendSuccess(text);
             })
             .fail(function (text) {
                 $btnSubmit.text('Resubmit');
                 that.subView.appendServerError(text);
-                that.subView.showErrors();
             })
             .always(function () {
                 $btnSubmit.removeAttr('disabled');
@@ -53,14 +50,8 @@ define(function (require) {
         } else {
             $btnSubmit.text('Resubmit');
             that.subView.appendUserError();
-            that.subView.showErrors();
         }
     };
 
     return View;
 });
-
-/*
-* переписать первый таск с переделанной сабвьюхой(сделать темплейт и смержить контроллер и вьюху)
-*
-* */

@@ -34,11 +34,13 @@ define(function (require) {
                 var model = new Model1(),
                     subModel = new SubModel1(),
                     subView = new SubView1({
-                        model: subModel
+                        model: subModel,
+                        $el: '.notificationBlock'
                     }),
                     view = new View1({
                         model: model,
-                        subView: subView
+                        subView: subView,
+                        $el: '#main'
                     });
 
                 mainView.showView(view);
@@ -47,7 +49,8 @@ define(function (require) {
             crossroads.addRoute('/second', function () {
                 var model = new Model2(),
                     view = new View2({
-                        model: model
+                        model: model,
+                        $el: '#main'
                     });
 
                 mainView.showView(view);
@@ -56,7 +59,8 @@ define(function (require) {
             crossroads.addRoute('/third', function () {
                 var model = new Model3(),
                     view = new View3({
-                        model: model
+                        model: model,
+                        $el: '#main'
                     });
 
                 mainView.showView(view);

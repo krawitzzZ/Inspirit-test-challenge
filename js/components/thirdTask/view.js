@@ -8,7 +8,7 @@ define(function (require) {
         BaseView.call(this, {
             model: options.model,
             template: _.template(tmpl),
-            $el: $('#main'),
+            $el: $(options.$el),
             events: {
                 'click #getFetch': 'getFetch',
                 'click #clearFetch': 'clearFetch'
@@ -27,12 +27,13 @@ define(function (require) {
         $btnGet.attr('disabled', 'true');
 
         that.model.get()
-        .done(function () {
-            that.render();
-        })
-        .always(function () {
-            $btnGet.removeAttr('disabled');
-        });
+            .done(function (serverResponse) {
+                that.model.addProduct(serverResponse);
+                that.render();
+            })
+            .always(function () {
+                $btnGet.removeAttr('disabled');
+            });
     };
 
     View.prototype.clearFetch = function (e) {
