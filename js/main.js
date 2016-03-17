@@ -1,12 +1,12 @@
 require.config({
     paths: {
-        jquery: 'vendors/jquery/dist/jquery.min',
-        underscore: 'vendors/underscore/underscore-min',
-        text: 'vendors/text/text',
-        crossroads: 'vendors/crossroads.js/dist/crossroads.min',
-        signals: 'vendors/js-signals/dist/signals.min',
+        jquery: 'vendors/jquery.min',
+        underscore: 'vendors/underscore-min',
+        text: 'vendors/text',
+        crossroads: 'vendors/crossroads.min',
+        signals: 'vendors/signals.min',
         global: 'components/common/global',
-        EventEmitter: 'vendors/eventEmitter/EventEmitter.min'
+        EventEmitter: 'vendors/EventEmitter.min'
     }
 });
 
