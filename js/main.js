@@ -6,19 +6,7 @@ require.config({
         crossroads: 'vendors/crossroads.min',
         signals: 'vendors/signals.min',
         global: 'components/common/global',
-        EventEmitter: 'vendors/EventEmitter.min',
-        //jasmine paths =====
-        'jasmine': ['../tests/lib/jasmine'],
-        'jasmine-html': ['../tests/lib/jasmine-html'],
-        'jasmine-boot': ['../tests/lib/boot']
-    },
-    shim: {
-        'jasmine-html': {
-            deps : ['jasmine']
-        },
-        'jasmine-boot': {
-            deps : ['jasmine', 'jasmine-html']
-        }
+        EventEmitter: 'vendors/EventEmitter.min'
     }
 });
 
@@ -32,14 +20,8 @@ requirejs.onError = function (err) {
 };
 
 require([
-    'jasmine-boot',
     'components/router'
-], function (jasmine, router) {
-
-    //init jasmine specs =====
-    require(['../tests/spec/firstTaskView_spec'], function(){
-        window.onload();
-    });
+], function (router) {
 
     router.init();
 });
