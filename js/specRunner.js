@@ -38,7 +38,8 @@ require([
 
     //init jasmine specs =====
     require([
-        '../tests/spec/firstTask_spec'
+        '../tests/spec/thirdTaskModel_spec',
+        '../tests/spec/thirdTaskView_spec'
     ], function(){
         global.onload();
     });
