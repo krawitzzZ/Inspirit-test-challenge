@@ -32,12 +32,15 @@ requirejs.onError = function (err) {
 };
 
 require([
+    'global',
     'jasmine-boot'
-], function () {
+], function (global) {
 
     //init jasmine specs =====
-    require(['../tests/spec/firstTaskView_spec'], function(){
-        window.onload();
+    require([
+        '../tests/spec/firstTask_spec'
+    ], function(){
+        global.onload();
     });
 
 });

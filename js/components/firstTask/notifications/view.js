@@ -30,7 +30,6 @@ define(function (require) {
             el = $(that.$el),
             noticesForShow = {};
 
-
         if (that.model.notices.length > that.MAX_ERRORS_COUNT) {
             noticesForShow.notices = _.first(that.model.notices, that.MAX_ERRORS_COUNT);
             el.html(that.template(noticesForShow));
