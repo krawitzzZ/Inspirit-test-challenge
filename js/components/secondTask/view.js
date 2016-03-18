@@ -1,7 +1,7 @@
 define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
-        tmpl = require('text!./template.html'),
+        tmpl = require('text!components/secondTask/template.html'),
         BaseView = require('components/common/base_view');
 
     function View(options) {
