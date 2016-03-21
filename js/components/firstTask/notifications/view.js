@@ -30,8 +30,7 @@ define(function (require) {
             el = $(that.$el),
             noticesForShow = {};
 
-        if (that.model.notices.length > that.MAX_ERRORS_COUNT) {
-            noticesForShow.notices = _.first(that.model.notices, that.MAX_ERRORS_COUNT);
+        if (checkNoticesSize()) {
             el.html(that.template(noticesForShow));
         } else {
             el.html(that.template(that.model));
@@ -57,6 +56,15 @@ define(function (require) {
 
             selector.once(eventName, $.proxy(handler, that));
         });
+
+        function checkNoticesSize() {
+            if (that.model.notices.length > that.MAX_ERRORS_COUNT) {
+                noticesForShow.notices = _.first(that.model.notices, that.MAX_ERRORS_COUNT);
+                return true;
+            } else {
+                return false;
+            }
+        }
     };
 
     NotificationView.prototype.appendSuccess = function (text) {
