@@ -38,6 +38,8 @@ require([
 
     //init jasmine specs =====
     require([
+        '../tests/spec/secondTaskView_spec',
+        '../tests/spec/secondTaskModel_spec',
         '../tests/spec/thirdTaskModel_spec',
         '../tests/spec/thirdTaskView_spec'
     ], function(){

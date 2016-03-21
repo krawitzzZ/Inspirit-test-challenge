@@ -77,11 +77,12 @@ define(function (require) {
                 item: 'apple'
             });
 
-            spyOn(view.model, 'addProduct');
-            spyOn(view, 'render');
             spyOn(view.model, 'get').and.callFake(function () {
                 return defer;
             });
+            spyOn(view.model, 'addProduct').and.callThrough();
+            spyOn(view, 'render').and.callThrough();
+
 
             var elem = global.document.getElementById('getFetch');
             var event = new MouseEvent('click', {
@@ -90,16 +91,43 @@ define(function (require) {
             elem.dispatchEvent(event);
             expect(view.model.addProduct).toHaveBeenCalled();
             expect(view.render).toHaveBeenCalled();
-
-
-
-
-
+            expect(view.model.fruits).toEqual({apple: 1});
         });
 
+        it('clearFetch() reset all counts of products', function () {
+            var model = new Model();
+            var view = new View({
+                model: model,
+                $el: '#main'
+            });
 
+            view.render();
 
+            view.model.addProduct({
+                type: 'fruit',
+                item: 'pear'
+            });
 
+            view.model.addProduct({
+                type: 'fruit',
+                item: 'apple'
+            });
 
+            view.model.addProduct({
+                type: 'fruit',
+                item: 'banana'
+            });
+
+            spyOn(view.model, 'clearProducts').and.callThrough();
+
+            var elem = global.document.getElementById('clearFetch');
+            var event = new MouseEvent('click');
+            elem.dispatchEvent(event);
+
+            expect(view.model.clearProducts).toHaveBeenCalled();
+            expect(view.model.fruits).toEqual({});
+            expect(view.model.vegetables).toEqual({});
+            expect(view.model.productsExist).toBe(false);
+        });
     });
 });
