@@ -36,8 +36,6 @@ define(function (require) {
                 $el: '#main'
             });
 
-            spyOn(view, 'getResponse');
-
             var elemBeforeRender = global.document.getElementById('btn-get-second');
             expect(elemBeforeRender).toBe(null);
 
@@ -46,12 +44,7 @@ define(function (require) {
             var elemAfterRender = global.document.getElementById('btn-get-second');
             expect(elemAfterRender).not.toBe(null);
             expect(elemAfterRender).not.toBe(undefined);
-
-            var event = new MouseEvent('click', {
-                target: '<button id="btn-get-second"></button>'
-            });
-            elemAfterRender.dispatchEvent(event);
-            expect(view.getResponse).toHaveBeenCalled();
+            expect(typeof view.getResponse).toBe('function');
         });
 
         it('getResponse() receives response from server and render new state of model', function () {
@@ -69,16 +62,14 @@ define(function (require) {
             });
 
             spyOn(view.model, 'get').and.callFake(function () {
-                return defer;
+                return defer.promise();
             });
             spyOn(view.model, 'renderData').and.callThrough();
             spyOn(view, 'render').and.callThrough();
 
 
             var elem = global.document.getElementById('btn-get-second');
-            var event = new MouseEvent('click', {
-                target: '<button id="btn-get-second"></button>'
-            });
+            var event = new MouseEvent('click');
             elem.dispatchEvent(event);
             expect(view.model.renderData).toHaveBeenCalled();
             expect(view.render).toHaveBeenCalled();

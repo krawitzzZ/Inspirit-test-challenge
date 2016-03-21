@@ -36,9 +36,6 @@ define(function (require) {
                 $el: '#main'
             });
 
-            spyOn(view, 'getFetch');
-            spyOn(view, 'clearFetch');
-
             var elemBeforeRender = global.document.getElementById('getFetch');
             expect(elemBeforeRender).toBe(null);
 
@@ -48,18 +45,8 @@ define(function (require) {
             var elem2AfterRender = global.document.getElementById('clearFetch');
             expect(elem1AfterRender).not.toBe(null);
             expect(elem2AfterRender).not.toBe(undefined);
-
-            var event1 = new MouseEvent('click', {
-                target: '<button id="getFetch"></button>'
-            });
-            elem1AfterRender.dispatchEvent(event1);
-            expect(view.getFetch).toHaveBeenCalled();
-
-            var event2 = new MouseEvent('click', {
-                target: '<button id="clearFetch"></button>'
-            });
-            elem2AfterRender.dispatchEvent(event2);
-            expect(view.clearFetch).toHaveBeenCalled();
+            expect(typeof view.getFetch).toBe('function');
+            expect(typeof view.clearFetch).toBe('function');
         });
 
         it('getFetch() receives response from server and render new count of products', function () {
@@ -78,16 +65,14 @@ define(function (require) {
             });
 
             spyOn(view.model, 'get').and.callFake(function () {
-                return defer;
+                return defer.promise();
             });
             spyOn(view.model, 'addProduct').and.callThrough();
             spyOn(view, 'render').and.callThrough();
 
 
             var elem = global.document.getElementById('getFetch');
-            var event = new MouseEvent('click', {
-                target: '<button id="getFetch"></button>'
-            });
+            var event = new MouseEvent('click');
             elem.dispatchEvent(event);
             expect(view.model.addProduct).toHaveBeenCalled();
             expect(view.render).toHaveBeenCalled();
