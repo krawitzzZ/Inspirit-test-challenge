@@ -72,13 +72,13 @@ define(function (require) {
         //    var input = $(view.$.input);
         //    input.val('qwe');
         //
+        //    spyOn(view.subView, 'appendSuccess');
+        //
         //    spyOn(view.model, 'get').and.callFake(function () {
         //        var defer = $.Deferred();
         //        defer.resolve('success server response received');
         //        return defer.promise();
         //    });
-        //
-        //    spyOn(view.subView, 'appendSuccess');
         //
         //    var elem = global.document.getElementById('btn-submit-first');
         //    var event = new MouseEvent('click');

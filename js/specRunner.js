@@ -40,6 +40,8 @@ require([
     require([
         '../tests/spec/firstTaskModel_spec',
         '../tests/spec/firstTaskView_spec',
+        '../tests/spec/firstTaskSubModel_spec',
+        '../tests/spec/firstTaskSubView_spec',
         '../tests/spec/secondTaskModel_spec',
         '../tests/spec/secondTaskView_spec',
         '../tests/spec/thirdTaskModel_spec',
