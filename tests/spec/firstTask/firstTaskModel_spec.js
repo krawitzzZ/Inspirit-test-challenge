@@ -1,6 +1,6 @@
 define(function (require) {
     describe('First task model class', function () {
-        var Model = require('../../js/components/firstTask/model');
+        var Model = require('../../../js/components/firstTask/model');
 
         it('Create an instance with default properties', function () {
             var model = new Model();

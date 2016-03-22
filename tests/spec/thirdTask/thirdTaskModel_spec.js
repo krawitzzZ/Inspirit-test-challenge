@@ -1,6 +1,6 @@
 define(function (require) {
     describe('Third task model class', function () {
-        var Model = require('../../js/components/thirdTask/model');
+        var Model = require('../../../js/components/thirdTask/model');
 
         it('Create an instance with default properties', function () {
             var model = new Model();

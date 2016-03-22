@@ -1,8 +1,8 @@
 define(function (require) {
     describe('First task subView class', function () {
-        var SubModel = require('../../js/components/firstTask/notifications/model');
-        var SubView = require('../../js/components/firstTask/notifications/view');
-        var BaseView = require('../../js/components/common/base_view');
+        var SubModel = require('../../../js/components/firstTask/notifications/model');
+        var SubView = require('../../../js/components/firstTask/notifications/view');
+        var BaseView = require('../../../js/components/common/base_view');
         var global = require('global');
         var $ = require('jquery');
 
@@ -90,7 +90,7 @@ define(function (require) {
             }]);
         });
 
-        it('isSuccessesExist() is a helper method that check exists of success notices', function () {
+        it('isSuccessesExist() is a helper method that check exists of success notices in model', function () {
             var subModel = new SubModel();
             var subView = new SubView({
                 model: subModel,

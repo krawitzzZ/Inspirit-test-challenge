@@ -38,14 +38,16 @@ require([
 
     //init jasmine specs =====
     require([
-        '../tests/spec/firstTaskModel_spec',
-        '../tests/spec/firstTaskView_spec',
-        '../tests/spec/firstTaskSubModel_spec',
-        '../tests/spec/firstTaskSubView_spec',
-        '../tests/spec/secondTaskModel_spec',
-        '../tests/spec/secondTaskView_spec',
-        '../tests/spec/thirdTaskModel_spec',
-        '../tests/spec/thirdTaskView_spec'
+        '../tests/spec/firstTask/firstTaskModel_spec',
+        '../tests/spec/firstTask/firstTaskView_spec',
+        '../tests/spec/firstTask/firstTaskSubModel_spec',
+        '../tests/spec/firstTask/firstTaskSubView_spec',
+        '../tests/spec/secondTask/secondTaskModel_spec',
+        '../tests/spec/secondTask/secondTaskView_spec',
+        '../tests/spec/thirdTask/thirdTaskModel_spec',
+        '../tests/spec/thirdTask/thirdTaskView_spec',
+        '../tests/spec/common/baseView_spec',
+        '../tests/spec/common/mainView_spec'
     ], function(){
         global.onload();
     });

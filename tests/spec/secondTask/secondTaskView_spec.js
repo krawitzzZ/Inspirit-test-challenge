@@ -1,8 +1,8 @@
 define(function (require) {
     describe('Second task view class', function () {
-        var Model = require('../../js/components/secondTask/model');
-        var View = require('../../js/components/secondTask/view');
-        var BaseView = require('../../js/components/common/base_view');
+        var Model = require('../../../js/components/secondTask/model');
+        var View = require('../../../js/components/secondTask/view');
+        var BaseView = require('../../../js/components/common/base_view');
         var global = require('global');
         var $ = require('jquery');
 

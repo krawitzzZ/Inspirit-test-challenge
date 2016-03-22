@@ -1,6 +1,6 @@
 define(function (require) {
     describe('First task subModel class', function () {
-        var Model = require('../../js/components/firstTask/notifications/model');
+        var Model = require('../../../js/components/firstTask/notifications/model');
         var EventEmitter = require('EventEmitter');
 
         it('Create an instance with default properties', function () {
