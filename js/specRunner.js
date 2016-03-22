@@ -47,7 +47,9 @@ require([
         '../tests/spec/thirdTask/thirdTaskModel_spec',
         '../tests/spec/thirdTask/thirdTaskView_spec',
         '../tests/spec/common/baseView_spec',
-        '../tests/spec/common/mainView_spec'
+        '../tests/spec/common/mainView_spec',
+        '../tests/spec/common/api_spec',
+        '../tests/spec/common/router_spec'
     ], function(){
         global.onload();
     });
