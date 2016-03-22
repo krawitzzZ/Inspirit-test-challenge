@@ -8,7 +8,7 @@ define(function (require) {
         var global = require('global');
         var $ = require('jquery');
 
-        it('Create an instance with called options', function () {
+        it('Creates an instance with called options', function () {
             var view = new View({}),
                 eventsCount = 0;
 
@@ -42,6 +42,7 @@ define(function (require) {
                 subView: subView,
                 $el: '#main'
             });
+            spyOn(view, 'submit');
 
             var elemBeforeRender = global.document.getElementById('btn-submit-first');
             expect(elemBeforeRender).toBe(null);
@@ -50,11 +51,13 @@ define(function (require) {
 
             var elemAfterRender = global.document.getElementById('btn-submit-first');
             expect(elemAfterRender).not.toBe(null);
-            expect(elemAfterRender).not.toBe(undefined);
-            expect(typeof view.submit).toBe('function');
+
+            $('#btn-submit-first').triggerHandler('click');
+
+            expect(view.submit).toHaveBeenCalled();
         });
 
-        it('submit() checks input value and change state of subView model depends on server response', function () {
+        it('submit() checks input value and changes state of subView model depends on server response', function () {
             var model = new Model();
             var subModel = new SubModel();
             var subView = new SubView({
@@ -65,6 +68,12 @@ define(function (require) {
                 model: model,
                 subView: subView,
                 $el: '#main'
+            });
+            spyOn(view.subView, 'appendSuccess');
+            spyOn(view.model, 'get').and.callFake(function () {
+                var defer = $.Deferred();
+                defer.resolve('success server response received');
+                return defer.promise();
             });
 
             view.render();
@@ -72,20 +81,11 @@ define(function (require) {
             var input = $(view.$.input);
             input.val('qwe');
 
-            spyOn(view.subView, 'appendSuccess');
-
-            spyOn(view.model, 'get').and.callFake(function () {
-                var defer = $.Deferred();
-                defer.resolve('success server response received');
-                return defer.promise();
-            });
-
-            var elem = $('#btn-submit-first');
-            elem.trigger('click');
+            $('#btn-submit-first').triggerHandler('click');
             expect(view.subView.appendSuccess).toHaveBeenCalled();
         });
 
-        it('submit() if input value is null append error to subView\'s model', function () {
+        it('submit() if input value is null appends user error to subView\'s model', function () {
             var model = new Model();
             var subModel = new SubModel();
             var subView = new SubView({
@@ -97,13 +97,11 @@ define(function (require) {
                 subView: subView,
                 $el: '#main'
             });
+            spyOn(view.subView, 'appendUserError');
 
             view.render();
 
-            spyOn(view.subView, 'appendUserError');
-
-            var elem = $('#btn-submit-first');
-            elem.trigger('click');
+            $('#btn-submit-first').triggerHandler('click');
             expect(view.subView.appendUserError).toHaveBeenCalled();
         });
     });

@@ -6,8 +6,7 @@ define(function (require) {
         var global = require('global');
         var $ = require('jquery');
 
-
-        it('Create an instance with called options', function () {
+        it('Creates an instance with called options', function () {
             var view = new View({}),
                 eventsCount = 0;
 
@@ -35,6 +34,7 @@ define(function (require) {
                 model: model,
                 $el: '#main'
             });
+            spyOn(view, 'getResponse');
 
             var elemBeforeRender = global.document.getElementById('btn-get-second');
             expect(elemBeforeRender).toBe(null);
@@ -43,36 +43,33 @@ define(function (require) {
 
             var elemAfterRender = global.document.getElementById('btn-get-second');
             expect(elemAfterRender).not.toBe(null);
-            expect(elemAfterRender).not.toBe(undefined);
-            expect(typeof view.getResponse).toBe('function');
+
+            $('#btn-get-second').triggerHandler('click');
+
+            expect(view.getResponse).toHaveBeenCalled();
         });
 
-        it('getResponse() receives response from server and render new state of model', function () {
+        it('getResponse() receives response from server and renders new state of model', function () {
             var model = new Model();
             var view = new View({
                 model: model,
                 $el: '#main'
             });
+            spyOn(view, 'render').and.callThrough();
+            spyOn(view.model, 'renderData').and.callThrough();
+            spyOn(view.model, 'get').and.callFake(function () {
+                var defer = $.Deferred();
+                defer.resolve({
+                    result: true
+                });
+                return defer.promise();
+            });
 
             view.render();
 
-            var defer = $.Deferred();
-            defer.resolve({
-                result: true
-            });
-
-            spyOn(view.model, 'get').and.callFake(function () {
-                return defer.promise();
-            });
-            spyOn(view.model, 'renderData').and.callThrough();
-            spyOn(view, 'render').and.callThrough();
-
-
-            var elem = global.document.getElementById('btn-get-second');
-            var event = new MouseEvent('click');
-            elem.dispatchEvent(event);
+            $('#btn-get-second').trigger('click');
+            expect(view.render.calls.count()).toEqual(2);
             expect(view.model.renderData).toHaveBeenCalled();
-            expect(view.render).toHaveBeenCalled();
             expect(view.model.clickCount).toBe(1);
             expect(view.model.successes).toBe(1);
             expect(view.model.failures).toBe(0);

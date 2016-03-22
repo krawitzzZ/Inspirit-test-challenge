@@ -4,9 +4,8 @@ define(function (require) {
         var SubView = require('../../../js/components/firstTask/notifications/view');
         var BaseView = require('../../../js/components/common/base_view');
         var global = require('global');
-        var $ = require('jquery');
 
-        it('Create an instance with called options', function () {
+        it('Creates an instance with called options', function () {
             var view = new SubView({}),
                 eventsCount = 0;
 
@@ -37,9 +36,12 @@ define(function (require) {
                 model: subModel,
                 $el: '#main'
             });
+            spyOn(subView, 'render');
 
             subView.render();
-            expect(typeof subView.render).toBe('function');
+            subView.model.emitEvent('change');
+
+            expect(subView.render).toHaveBeenCalled();
         });
 
         it('appendSuccess() appends success notice with server response to subView\'s model', function () {
@@ -90,7 +92,7 @@ define(function (require) {
             }]);
         });
 
-        it('isSuccessesExist() is a helper method that check exists of success notices in model', function () {
+        it('isSuccessesExist() is a helper method that checks exists of success notices in model', function () {
             var subModel = new SubModel();
             var subView = new SubView({
                 model: subModel,
@@ -99,7 +101,6 @@ define(function (require) {
 
             subView.render();
 
-            subView.appendUserError();
             subView.appendUserError();
             expect(subView.isSuccessesExist()).toBe(false);
             subView.appendSuccess('success');

@@ -44,7 +44,7 @@ define(function (require) {
         });
 
         if (that.subView) {
-            if (typeof that.subView === Array) {
+            if (Array.isArray(that.subView)) {
                 _.each(that.subView, function (view) {
                     view.render();
                 });

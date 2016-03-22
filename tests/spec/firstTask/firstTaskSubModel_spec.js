@@ -3,7 +3,7 @@ define(function (require) {
         var Model = require('../../../js/components/firstTask/notifications/model');
         var EventEmitter = require('EventEmitter');
 
-        it('Create an instance with default properties', function () {
+        it('Creates an instance with default properties', function () {
             var model = new Model();
             expect(model).toBeDefined();
             expect(model.notices).toEqual([]);
@@ -15,7 +15,7 @@ define(function (require) {
 
             expect(model.prototype).toBe(eventEmitter.prototype);
         });
-        it('appendNotification() append new notification to notices array', function () {
+        it('appendNotification() appends new notification to notices array', function () {
             var model = new Model();
 
             var newNotice = {
@@ -31,7 +31,7 @@ define(function (require) {
                 }]);
         });
 
-        it('resetNotifications() reset all notifications in notices array', function () {
+        it('resetNotifications() resets all notifications in notices array', function () {
             var model = new Model();
 
             var newNotice = {

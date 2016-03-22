@@ -4,7 +4,7 @@ define(function (require) {
         var View = require('../../../js/components/secondTask/view');
         var Model = require('../../../js/components/secondTask/model');
 
-        it('Create an instance of class and event listener on navigation elements', function () {
+        it('Creates an instance of class and event listener on navigation elements', function () {
             var mainView = new MainView();
 
             expect(mainView.view).toBe(null);
@@ -16,20 +16,20 @@ define(function (require) {
         });
 
         it('showView() disposes current view if exists and renders new view as own', function () {
-            var model = new Model();
-            var view = new View({
-                model: model,
-                $el: '#main'
-            });
-            var mainView = new MainView();
-
+            var model = new Model(),
+                view = new View({
+                    model: model,
+                    $el: '#main'
+                });
+            spyOn(view, 'render');
+            var mainView = new MainView(view);
             expect(mainView.view).toBe(null);
 
             mainView.showView(view);
 
             expect(mainView.view).not.toBe(null);
             expect(typeof mainView.view.render).toBe('function');
-
+            expect(mainView.view.render).toHaveBeenCalled();
         });
     });
 });

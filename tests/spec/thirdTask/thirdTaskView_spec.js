@@ -7,7 +7,7 @@ define(function (require) {
         var $ = require('jquery');
 
 
-        it('Create an instance with called options', function () {
+        it('Creates an instance with called options', function () {
             var view = new View({}),
                 eventsCount = 0;
 
@@ -29,12 +29,14 @@ define(function (require) {
             expect(view.prototype).toBe(baseView.prototype);
         });
 
-        it('render() renders view\'s template and bind events', function () {
+        it('render() renders view\'s template and binds events', function () {
             var model = new Model();
             var view = new View({
                 model: model,
                 $el: '#main'
             });
+            spyOn(view, 'clearFetch');
+            spyOn(view, 'getFetch');
 
             var elemBeforeRender = global.document.getElementById('getFetch');
             expect(elemBeforeRender).toBe(null);
@@ -45,46 +47,50 @@ define(function (require) {
             var elem2AfterRender = global.document.getElementById('clearFetch');
             expect(elem1AfterRender).not.toBe(null);
             expect(elem2AfterRender).not.toBe(undefined);
-            expect(typeof view.getFetch).toBe('function');
-            expect(typeof view.clearFetch).toBe('function');
+
+            $('#getFetch').trigger('click');
+            $('#clearFetch').trigger('click');
+
+            expect(view.clearFetch).toHaveBeenCalled();
+            expect(view.getFetch).toHaveBeenCalled();
         });
 
-        it('getFetch() receives response from server and render new count of products', function () {
+        it('getFetch() receives response from server and renders new count of products', function () {
             var model = new Model();
             var view = new View({
                 model: model,
                 $el: '#main'
+            });
+
+            spyOn(view, 'render').and.callThrough();
+            spyOn(view.model, 'addProduct').and.callThrough();
+            spyOn(view.model, 'get').and.callFake(function () {
+                var defer = $.Deferred();
+                defer.resolve({
+                    type: 'fruit',
+                    item: 'apple'
+                });
+
+                return defer.promise();
             });
 
             view.render();
 
-            var defer = $.Deferred();
-            defer.resolve({
-                type: 'fruit',
-                item: 'apple'
-            });
+            $('#getFetch').triggerHandler('click');
 
-            spyOn(view.model, 'get').and.callFake(function () {
-                return defer.promise();
-            });
-            spyOn(view.model, 'addProduct').and.callThrough();
-            spyOn(view, 'render').and.callThrough();
-
-
-            var elem = global.document.getElementById('getFetch');
-            var event = new MouseEvent('click');
-            elem.dispatchEvent(event);
+            expect(view.render.calls.count()).toEqual(2);
             expect(view.model.addProduct).toHaveBeenCalled();
-            expect(view.render).toHaveBeenCalled();
             expect(view.model.fruits).toEqual({apple: 1});
         });
 
-        it('clearFetch() reset all counts of products', function () {
+        it('clearFetch() resets all counts of products', function () {
             var model = new Model();
             var view = new View({
                 model: model,
                 $el: '#main'
             });
+
+            spyOn(view.model, 'clearProducts').and.callThrough();
 
             view.render();
 
@@ -103,11 +109,7 @@ define(function (require) {
                 item: 'banana'
             });
 
-            spyOn(view.model, 'clearProducts').and.callThrough();
-
-            var elem = global.document.getElementById('clearFetch');
-            var event = new MouseEvent('click');
-            elem.dispatchEvent(event);
+            $('#clearFetch').trigger('click');
 
             expect(view.model.clearProducts).toHaveBeenCalled();
             expect(view.model.fruits).toEqual({});

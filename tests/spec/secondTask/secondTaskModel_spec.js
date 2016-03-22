@@ -2,7 +2,7 @@ define(function (require) {
     describe('Second task model class', function () {
         var Model = require('../../../js/components/secondTask/model');
 
-        it('Create an instance with default properties', function () {
+        it('Creates an instance with default properties', function () {
             var model = new Model();
             expect(model).toBeDefined();
             expect(model.clickCount).toBe(0);
@@ -13,14 +13,14 @@ define(function (require) {
             expect(model.wrapperColor).toBe('');
         });
 
-        it('get() returns deferred promise with methods done, fail and always', function () {
+        it('get() returns promise with server response and methods done, fail and always', function () {
             var model = new Model();
             expect(typeof model.get().done).toBe('function');
             expect(typeof model.get().fail).toBe('function');
             expect(typeof model.get().always).toBe('function');
         });
 
-        it('paintWrapper() change wrapper color depend on server response', function () {
+        it('paintWrapper() changes wrapper color depend on server response', function () {
             var model = new Model();
             model.paintWrapper(true);
             expect(model.wrapperColor).toBe('green');
@@ -36,15 +36,16 @@ define(function (require) {
             var model = new Model();
             model.failCounter(false);
             expect(model.failures).toBe(1);
+            expect(model.successes).toBe(0);
             model.failCounter(true);
+            expect(model.failures).toBe(1);
             expect(model.successes).toBe(1);
-            model.failCounter(true);
-            expect(model.successes).toBe(2);
         });
 
         it('failSinceSuccessCounter() counts fails since last success server response', function () {
             var model = new Model();
             model.failSinceSuccessCounter(false);
+            expect(model.failureSinceLastSuccess).toBe(1);
             model.failSinceSuccessCounter(false);
             expect(model.failureSinceLastSuccess).toBe(2);
             model.failSinceSuccessCounter(true);

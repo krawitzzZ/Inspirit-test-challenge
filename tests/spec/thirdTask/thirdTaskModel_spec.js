@@ -2,21 +2,21 @@ define(function (require) {
     describe('Third task model class', function () {
         var Model = require('../../../js/components/thirdTask/model');
 
-        it('Create an instance with default properties', function () {
+        it('Creates an instance with default properties', function () {
             var model = new Model();
             expect(model.productsExist).toBe(false);
             expect(typeof model.fruits).toBe('object');
             expect(typeof model.vegetables).toBe('object');
         });
 
-        it('get() returns deferred promise with methods done, fail and always', function () {
+        it('get() returns promise with server response and methods done, fail and always', function () {
             var model = new Model();
             expect(typeof model.get().done).toBe('function');
             expect(typeof model.get().fail).toBe('function');
             expect(typeof model.get().always).toBe('function');
         });
 
-        it('addProduct() adds new type of product or increase current value if same type already exists', function () {
+        it('addProduct() adds new type of product or increases current value if same type already exists', function () {
             var model = new Model();
 
             model.addProduct({
